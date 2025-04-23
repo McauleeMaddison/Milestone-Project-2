@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milestone Project 2</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hoodie Doggos</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to Milestone Project 2</h1>
-    </header>
-    <main>
-        <p>Start building your project here!</p>
-    </main>
-    <footer>
-        <p>&copy; 2025 Your Name</p>
-    </footer>
+  <h1 class="title">Hoodie Doggos Card Collection</h1>
+  <div class="card-container">
+    <div class="card" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="images/doggo1.png" alt="Doggo in Hoodie">
+          <h2>Shadow</h2>
+        </div>
+        <div class="card-back">
+          <h3>Stats</h3>
+          <ul>
+            <li><strong>Speed:</strong> 80</li>
+            <li><strong>Style:</strong> 95</li>
+            <li><strong>Loyalty:</strong> 88</li>
+            <li><strong>Rarity:</strong> ★★★★☆</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
