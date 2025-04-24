@@ -174,20 +174,42 @@
   </label>
 </div>
 
-  <div id="profile" class="page">
-    <h1 class="title">User Profile</h1>
-    <p>View and update your profile and avatar.</p>
+<div id="profile" class="page">
+    <h1 class="title">Your Profile</h1>
+    <div class="profile-card">
+      <img id="profileAvatar" src="images/default-avatar.png" alt="User Avatar" class="avatar" />
+      <h2>Username: DoggoMaster42</h2>
+      <p>Level: 15</p>
+      <p>Owned Cards: 38</p>
+      <input type="file" id="profileUpload" accept="image/*" />
     </div>
+  </div>
 
   <div id="about" class="page">
     <h1 class="title">About Hoodie Doggos</h1>
     <p>This project is all about stylish dogs, trading cards, and creativity! Built as part of a frontend milestone project.</p>
-  </div>
+    <div id="about" class="page">
+        <h1 class="title">About Hoodie Doggos</h1>
+        <div class="about-card" onclick="this.classList.toggle('flipped')">
+          <div class="about-inner">
+            <div class="about-front">Click me to learn more!</div>
+            <div class="about-back">
+              <p>Hoodie Doggos is a collectible card game with stylish pups in streetwear. Build your collection, unlock hidden rarities, and battle your way to the top!</p>
+            </div>
+          </div>
+        </div>
+        </div>
 
   <div id="support" class="page">
     <h1 class="title">Support</h1>
     <p>Need help? Reach out to our team for support or feedback!</p>
-  </div>
+    <div id="support" class="page">
+        <h1 class="title">Need Help?</h1>
+        <div class="support-box">
+          <p class="support-message">Our hoodie helper is on the way! 🐕‍🦺</p>
+          <button class="glow-button">Contact Us</button>
+        </div>
+      </div>
 
   <script>
     const switchPage = (pageId) => {
