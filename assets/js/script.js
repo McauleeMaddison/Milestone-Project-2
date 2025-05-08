@@ -1,30 +1,56 @@
 const cards = [
-    {
-      name: "AlienPup",
-      image: "assets/images/shadow.png",
-      stats: { speed: 7, style: 10, loyalty: 8, rarity: "Legendary" }
-    },
-    {
-      name: "FloatyPup",
-      image: "assets/images/blaze.png",
-      stats: { speed: 9, style: 9, loyalty: 6, rarity: "Epic" }
-    },
-    {
-      name: "LandPup",
-      image: "assets/images/nova.png",
-      stats: { speed: 6, style: 8, loyalty: 10, rarity: "Rare" }
-    },
-    {
-      name: "MoonPup",
-      image: "assets/images/bolt.png",
-      stats: { speed: 10, style: 7, loyalty: 7, rarity: "Epic" }
-    },
-    {
-      name: "SpacePup",
-      image: "images/frost.png",
-      stats: { speed: 8, style: 9, loyalty: 9, rarity: "Legendary" }
-    }
+  {
+ name: "AlienPup",
+  image: "assets/images/AlienPup.png",
+ stats: { speed: 74, style: 93, loyalty: 97, rarity: "Legendary" }
+  },
+  {
+ name: "Lucy",
+ image: "assets/images/Lucy.png",
+ stats: { style: 90, loyalty: 60, Speed: 80, rarity: "Epic" }
+  },
+ {
+  name: "Trevor",
+ image: "assets/images/Trevor.png",
+ stats: { Speed: 90, Style: 80, loyalty: 70, rarity: "Rare" }
+ },
+ {
+ name: "Gibbons",
+ image: "assets/images/Gibbons.png",
+ stats: { style: 70, loyalty: 80, rarity: "Common" }
+ },
+ {
+ name: "Elsie",
+ image: "assets/images/Elsie.png",
+ stats: { Energy: 80, iq: 90, rarity: "Uncommon" }
+  },
+     {
+ name: "AlienPup",
+  image: "assets/images/AlienPup.png",
+ stats: { speed: 43, style: 63, loyalty: 85, rarity: "Rare" },
+ },
+ {
+ name: "Lucy",
+ image: "assets/images/Lucy.png",
+ stats: { style: 90, loyalty: 60, Speed: 80, rarity: "Epic" }
+  },
+ {
+  name: "Trevor",
+ image: "assets/images/Trevor.png",
+ stats: { Speed: 90, Style: 80, loyalty: 70, rarity: "Epic" }
+ },
+  {
+ name: "Gibbons",
+ image: "assets/images/Gibbons.png",
+ stats: { style: 70, loyalty: 80, rarity: "Epic" }
+ },
+ {
+ name: "Elsie",
+ image: "assets/images/Elsie.png",
+ stats: { Energy: 80, iq: 90, rarity: "Epic" }
+  }
   ];
+ 
   
   function switchPage(pageId) {
     document.querySelectorAll('.page').forEach(page => {
@@ -32,60 +58,35 @@ const cards = [
     });
     document.getElementById(pageId).classList.add('active');
   }
-  
-  function renderCards(containerId, cardArray) {
+  function renderCollectionCards(containerId, cardArray) {
     const container = document.getElementById(containerId);
-    if (!container) return;
     container.innerHTML = "";
-  
     cardArray.forEach(card => {
       const cardDiv = document.createElement('div');
-      const isCollection = containerId.includes("collection");
-      const isCarousel = containerId.includes("Carousel");
-  
-      cardDiv.className = isCollection || isCarousel ? 'collection-card' : 'card';
-        if (isCollection || isCarousel) {
-        cardDiv.innerHTML = `
+      cardDiv.className = 'collection-card';
+      cardDiv.innerHTML = `
+        <div class="card-inner-face card-front-face">
           <img src="${card.image}" alt="${card.name}" />
-          <div class="speech-bubble">
-            <strong>${card.name}</strong><br>
-            Speed: ${card.stats.speed}<br>
-            Style: ${card.stats.style}<br>
-            Loyalty: ${card.stats.loyalty}<br>
-            Rarity: ${card.stats.rarity}
-          </div>
-        `;
-      } else {
-        function renderCircularCarousel(cards) {
-            const carousel = document.getElementById('cardCarousel');
-            const cardCount = cards.length;
-            const angle = 360 / cardCount;
-          
-            cards.forEach((card, index) => {
-              const cardDiv = document.createElement('div');
-              cardDiv.className = 'carousel-card';
-              cardDiv.style.transform = `rotateY(${angle * index}deg) translateZ(300px)`;
-          
-              cardDiv.innerHTML = `
-                <img src="${card.image}" alt="${card.name}" />
-                <div class="hologram">
-                  <strong>${card.name}</strong><br>
-                  Speed: ${card.stats.speed}<br>
-                  Style: ${card.stats.style}<br>
-                  Loyalty: ${card.stats.loyalty}<br>
-                  Rarity: ${card.stats.rarity}
-                </div>
-              `;
-          
-              carousel.appendChild(cardDiv);
-            });
-          }
-        // Flip cards (main/home)
-        cardDiv.innerHTML = `
+        </div>
+        <div class="card-inner-face card-back-face">
+          <h4>${card.name}</h4>
+          <ul>
+            <li>Speed: ${card.stats.speed}</li>
+            <li>Style: ${card.stats.style}</li>
+            <li>Loyalty: ${card.stats.loyalty}</li>
+            <li>Rarity: ${card.stats.rarity}</li>
+          </ul>
+        </div>
+      `;
+      cardDiv.addEventListener('click', () => {
+        cardDiv.classList.toggle('flipped');
+      });
+    container.appendChild(cardDiv);
+  // Flip cards (main/home)
+  cardDiv.innerHTML = `
           <div class="card-inner">
             <div class="card-front">
-              <img src="${card.image}" alt="${card.name}" />
-              <h3>${card.name}</h3>
+              <img src="${card.image}"/>
             </div>
             <div class="card-back">
               <h4>Stats</h4>
@@ -101,8 +102,6 @@ const cards = [
         cardDiv.addEventListener('click', () => {
           cardDiv.classList.toggle('flipped');
         });
-      }
-  
       container.appendChild(cardDiv);
     });
   }
