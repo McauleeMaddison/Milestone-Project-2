@@ -156,7 +156,7 @@
         <a href="profile.html" onclick="switchPage('profile')">Profile</a>
     </nav>
 
-    <div id="home" class="page active">
+    <div id="home" class="page">
         <h1 class="title">My Collection</h1>
         <div class="filter-container">
             <label for="filter">Sort by:</label>
@@ -171,17 +171,31 @@
         <div class="card-container" id="cardContainer"></div>
     </div>
 
-    <div id="collection" class="page">
+    <div id="collection" class="page active">
         <h1 class="title">My Collection</h1>
-        <p>Track your owned cards, favorites, and rare finds.</p>
-        <div class="carousel-container">
-            <div class="carousel" id="cardCarousel">
+        
+        <div class="'card-pack" id="cryptopups-paack">
+            <h2>Cryptopups</h2>
+        <div class="pack-cover" onclick="openPack('cryptopups')">Open Pack</div>
+        <div class="card-container" id="cryptopups"></div> 
+        </div>
+
+        <div class="card-pack" id="cyberpups-pack">
+            <h2>Cyberpups</h2>
+            <div class="pack-cover" onclick="openPack('cyberpups')">openPack</div>
+            <div class="card-container" id="cyberpups"></div>
             </div>
-      </div>
+
+            <div class="card-pack" id="alienpups-pack">
+                <h2>Alienpups</h2>
+                <div class="pack-cover" onclick="openPack('alienpups')">openPack</div>
+                <div class="card-container" id="alienpups"></div>
+                </div>
+    </div>
 
     <div id="store" class="page">
         <h1 class="title">Card Store</h1>
-        <p>Buy new packs, special editions, and rare hoodie doggos!</p>
+        <p>Buy new packs, special editions, and rare NFTPups!</p>
     </div>
 
     <div id="settings" class="page">
@@ -206,6 +220,12 @@
                 <span class="slider"></span>
             </label>
         </div>
+
+        <div id="profile" class="page">
+            <h1 class="title">Profile page</h1>
+            <p>View Your Level and Sign in</p>
+        </div>
+
 <script>
 const switchPage = (pageId) => {
 document.querySelectorAll('.page').forEach(page => {
@@ -214,59 +234,42 @@ document.querySelectorAll('.page').forEach(page => {
 document.getElementById(pageId).classList.add('active');
  };
 
-const cards = [
- {
-name: "AlienPup",
- image: "assets/images/AlienPup.png",
-stats: { speed: 74, style: 93, loyalty: 97, rarity: "Legendary" }
- },
- {
-name: "Lucy",
-image: "assets/images/Lucy.png",
-stats: { style: 90, loyalty: 60, Speed: 80, rarity: "Epic" }
- },
+ const cards = [
 {
- name: "Trevor",
-image: "assets/images/Trevor.png",
-stats: { Speed: 90, Style: 80, loyalty: 70, rarity: "Rare" }
-},
-{
-name: "Gibbons",
-image: "assets/images/Gibbons.png",
-stats: { style: 70, loyalty: 67, rarity: "Common" }
-},
-{
-name: "Elsie",
-image: "assets/images/Elsie.png",
-stats: { Energy: 80, iq: 90, rarity: "Uncommon" }
- },
-    {
-name: "AlienPup",
- image: "assets/images/AlienPup.png",
-stats: { speed: 43, style: 63, loyalty: 85, rarity: "Rare" },
-},
-{
-name: "Lucy",
-image: "assets/images/Lucy.png",
-stats: { style: 90, loyalty: 60, Speed: 80, rarity: "Epic" }
- },
-{
- name: "Trevor",
-image: "assets/images/Trevor.png",
-stats: { Speed: 90, Style: 80, loyalty: 70, rarity: "Epic" }
-},
- {
-name: "Gibbons",
-image: "assets/images/Gibbons.png",
-stats: { style: 70, loyalty: 80, rarity: "Epic" }
-},
-{
-name: "Elsie",
-image: "assets/images/Elsie.png",
-stats: { Energy: 80, iq: 90, rarity: "Epic" }
- }
+name: "WoodyBlue",
+image: "assets/images/WoodyBlue.png",
+stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" }
+  },{
+name: "Ace",
+image: "assets/images/Ace.png",
+stats: { speed: 82, style: 57, loyalty: 78, rarity: "Rare" }
+  },{
+name: "LandBlue",
+image: "assets/images/LandBlue.png",
+stats: { speed: 43, style: 67, loyalty: 97, rarity: "Common" }
+  },{
+name: "Darla",
+image: "assets/images/Darla.png",
+stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" }
+  },{
+name: "SpacePup",
+image: "assets/images/SpacePup.png",
+status: { speed: 60, style: 88, loyalty: 75, rarity: "Rare" }
+  },{
+name: "Rover",
+image: "assets/images/Rover.png",
+stats: { speed: 75, style: 95, loyalty: 64, rarity: "Epic" }
+  },{
+name: "Victor",
+image: "assets/images/Victor.png",
+stats: { speed: 69, style: 67, loyalty: 26, rarity: "Uncommon" }
+  },{
+name: "Jinx",
+image: "assets/images/Jinx.png",
+stats: { speed: 86, style: 80, loyalty: 65, rarity: "Rare" }
+  },
  ];
-
+// Add more cards as needed
 function renderCards(containerId, cardArray) {
 const container = document.getElementById(containerId);
  container.innerHTML = "";
