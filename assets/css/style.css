@@ -1,8 +1,19 @@
+/* Global Styles */
+body {
+  background: radial-gradient(circle at top, #111, #222);
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Card Pack */
 .card-pack {
   margin: 2rem 0;
   text-align: center;
 }
 
+/* Pack Cover */
 .pack-cover {
   background: linear-gradient(to right, #444, #111);
   padding: 1rem;
@@ -17,23 +28,19 @@
   background: linear-gradient(to right, #666, #222);
 }
 
+/* Card Reveal */
 .card-container {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-  opacity: 0;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.6s ease, opacity 0.4s ease;
 }
 
 .card-container.open {
+  max-height: 1000px;
   opacity: 1;
-  transform: scaleY(1);
 }
 
+/* Card Styling */
 .card {
   perspective: 1000px;
   width: 200px;
@@ -55,8 +62,9 @@
   transform: rotateY(180deg);
 }
 
+/* Card Faces */
 .card-front, .card-back {
- width: 100%;
+  width: 100%;
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
@@ -66,16 +74,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   padding: 15px;
+  text-align: center;
 }
 
+/* Card Front */
 .card-front {
   background: #222;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .card-front img {
@@ -90,22 +95,23 @@
   color: #0ff;
 }
 
+/* Card Back */
 .card-back {
   background: #111;
   color: #fff;
   transform: rotateY(180deg);
-  padding: 1rem;
 }
 
 .card-back h4 {
   margin-top: 0;
-  text-align: center;
 }
 
 .card-back ul {
   list-style: none;
   padding: 0;
 }
+
+/* Glow Button */
 .glow-button {
   background: #0ff;
   border: none;
@@ -123,16 +129,28 @@
   box-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
   transform: scale(1.05);
 }
-.profile-card {
 
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
-    
-    .page.active {
-      display: block;
-      opacity: 1;
+/* Page Section Styling */
+#home {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+}
+
+#collection {
+  background: radial-gradient(circle, #1e1e3f, #111);
+}
+
+#store {
+  background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
+}
+
+#settings {
+  background: repeating-linear-gradient(45deg, #1a1a1d, #1a1a1d 10px, #27272a 10px, #27272a 20px);
+}
+
+/* Page Active View */
+.page.active {
+  display: block;
+  opacity: 1;
   text-align: center;
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.05);
@@ -141,6 +159,14 @@
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
 
+/* Profile Card */
+.profile-card {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Avatar */
 .avatar {
   width: 120px;
   height: 120px;
@@ -155,27 +181,8 @@
   color: #ccc;
   margin-top: 10px;
 }
-#home {
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-}
 
-#collection {
-  background: radial-gradient(circle, #1e1e3f, #111);
-}
-
-#store {
-  background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
-}
-
-#settings {
-  background: repeating-linear-gradient(
-    45deg,
-    #1a1a1d,
-    #1a1a1d 10px,
-    #27272a 10px,
-    #27272a 20px
-  );
-}
+/* Toggle Switch */
 .toggle-container {
   display: flex;
   align-items: center;
@@ -232,6 +239,8 @@
   transform: translateX(26px);
   box-shadow: 0 0 12px #0ff;
 }
+
+/* About Card */
 .about-card {
   perspective: 1000px;
   margin: 2rem auto;
@@ -253,8 +262,7 @@
   transform: rotateY(180deg);
 }
 
-.about-front,
-.about-back {
+.about-front, .about-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -272,6 +280,7 @@
   transform: rotateY(180deg);
 }
 
+/* Support Box */
 .support-box {
   margin-top: 2rem;
   text-align: center;
@@ -288,6 +297,8 @@
     opacity: 1;
   }
 }
+
+/* Collection Card */
 .collection-container {
   display: flex;
   flex-wrap: wrap;
@@ -318,14 +329,8 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
-body {
-  background: radial-gradient(circle at top, #111, #222);
-  font-family: 'Orbitron', sans-serif;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-}
 
+/* Profile Page */
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -384,6 +389,8 @@ body {
   height: 100%;
   background: linear-gradient(90deg, #0ff, #0f0);
 }
+
+/* Sparkle Animation */
 @keyframes sparkle {
   0% {
     opacity: 1;
