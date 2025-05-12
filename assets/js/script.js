@@ -166,9 +166,4 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById('collectionContainer')) {
     renderCards('collectionContainer', cards);
   }
-
-  if (document.getElementById('profileCardCarousel')) {
-    const topCards = cards.slice(0, 3);
-    renderCards('profileCardCarousel', topCards);
-  }
 });
