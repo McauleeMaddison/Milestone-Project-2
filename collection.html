@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NFTPups</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
@@ -152,6 +152,7 @@
       padding: 2rem;
     }
   </style>
+
 </head>
 <body>
   <nav>
@@ -162,7 +163,7 @@
     <a href="#" onclick="switchPage('profile')">Profile</a>
   </nav>
 
-  <div id="home" class="page">
+  <div id="home" class="page active">
     <h1 class="title">All NFTPups</h1>
     <div class="filter-container">
       <label for="filter">Sort by:</label>
@@ -175,8 +176,9 @@
       </select>
     </div>
     <div class="card-container" id="cardContainer"></div>
+  </div>
 
-  <div id="collection" class="page active">
+  <div id="collection" class="page">
     <h1 class="title">My Collection</h1>
     <div class="card-pack" onclick="openPack('cryptopups')">
       <img src="assets/images/cryptopups/MoonPup.png" alt="MoonPup - Cryptopups Collection"/>
@@ -184,11 +186,11 @@
     </div>
     <div class="card-pack" onclick="openPack('cyberpups')">
       <img src="assets/images/cyberpups/Elsie.png" alt="Elsie - Cyberpups Collection"/>
-        <h3>Cyberpups</h3>
+      <h3>Cyberpups</h3>
     </div>
     <div class="card-pack" onclick="openPack('alienpups')">
       <img src="assets/images/alienpups/Tima.png" alt="Tima - Alienpups Collection"/>
-        <h3>Alienpups</h3>
+      <h3>Alienpups</h3>
     </div>
     <div id="packDisplay" class="card-display-area"></div>
   </div>
@@ -197,19 +199,16 @@
     <h1 class="title">Card Store</h1>
     <p>Buy new packs, special editions, and rare NFTPups!</p>
   </div>
-</div>
 
   <div id="settings" class="page">
     <h1 class="title">Settings</h1>
     <p>Customize your experience. Coming soon!</p>
   </div>
-</div>
 
   <div id="profile" class="page">
     <h1 class="title">Profile Page</h1>
     <p>View Your Level and Sign in</p>
   </div>
-</div>
 
   <script>
     const switchPage = (pageId) => {
@@ -266,13 +265,16 @@
         renderCards('cardContainer', cards);
         return;
       }
+
+      const rarityOrder = { "Common": 1, "Uncommon": 2, "Rare": 3, "Epic": 4, "Legendary": 5 };
+
       const sorted = [...cards].sort((a, b) => {
-        if (typeof a.stats[sortBy] === "number") {
-          return b.stats[sortBy] - a.stats[sortBy];
-        } else {
-          return a.stats[sortBy].localeCompare(b.stats[sortBy]);
+        if (sortBy === "rarity") {
+          return rarityOrder[b.stats.rarity] - rarityOrder[a.stats.rarity];
         }
+        return b.stats[sortBy] - a.stats[sortBy];
       });
+
       renderCards('cardContainer', sorted);
     }
 
@@ -310,7 +312,6 @@
       });
     }
 
-    // Initialize home page cards
     document.addEventListener("DOMContentLoaded", () => {
       renderCards('cardContainer', cards);
     });
