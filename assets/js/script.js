@@ -47,7 +47,7 @@ const alienpups = [
 
 const cards = [...cryptopups, ...cyberpups, ...alienpups];
 
-// ========== RENDER CARDS ==========
+// ========== RENDER CARDS ========== //
 function renderCards(containerId, cardArray) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
@@ -77,7 +77,7 @@ function renderCards(containerId, cardArray) {
   });
 }
 
-// ========== SIGN IN ==========
+// ========== SIGN IN ========== //
 function signIn() {
   const username = document.querySelector('input[type="text"]').value;
   document.querySelector('.sign-in-box').style.display = 'none';
@@ -85,7 +85,7 @@ function signIn() {
   document.getElementById('usernameDisplay').textContent = `${username}'s Profile`;
 }
 
-// ========== FILTER CARDS ==========
+// ========== FILTER CARDS ========== //
 function filterCards() {
   const sortBy = document.getElementById('filter').value;
   if (sortBy === "all") {
@@ -104,7 +104,7 @@ function filterCards() {
   renderCards('cardContainer', sorted);
 }
 
-// ========== OPEN PACK ==========
+// ========== OPEN PACK ========== //
 function openPack(packName) {
   let cards = [];
   if (packName === "cryptopups") cards = cryptopups;
@@ -144,7 +144,7 @@ function openPack(packName) {
   });
 }
 
-// ========== SPARKLE EFFECT ==========
+// ========== SPARKLE EFFECT ========== //
 function createSparkle(x, y) {
   const sparkle = document.createElement("div");
   sparkle.className = "sparkle";
@@ -157,7 +157,7 @@ function createSparkle(x, y) {
   }, 1000);
 }
 
-// ========== INITIALISE ==========
+// ========== INITIALISE ========== //
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById('cardContainer')) {
     renderCards('cardContainer', cards);
