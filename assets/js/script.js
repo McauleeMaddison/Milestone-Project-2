@@ -144,19 +144,6 @@ function openPack(packName) {
   });
 }
 
-// ========== SPARKLE EFFECT ========== //
-function createSparkle(x, y) {
-  const sparkle = document.createElement("div");
-  sparkle.className = "sparkle";
-  sparkle.style.left = `${x}px`;
-  sparkle.style.top = `${y}px`;
-  document.body.appendChild(sparkle);
-
-  setTimeout(() => {
-    sparkle.remove();
-  }, 1000);
-}
-
 // ========== INITIALISE ========== //
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById('cardContainer')) {
