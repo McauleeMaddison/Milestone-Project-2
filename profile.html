@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NFTPups</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #232526, #414345);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      gap: 2rem;
+    }
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ff4081;
+    }
+    .page {
+      display: none;
+      padding: 2rem;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .page.active {
+      display: block;
+    }
+    .title {
+      font-size: 2rem;
+      color: #ffcc00;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .card {
+      width: 180px;
+      height: 260px;
+      perspective: 1000px;
+    }
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 4%;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    .card-front {
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .card-front img {
+      max-width: 95%;
+      border-radius: 2%;
+    }
+    .card-back {
+      background: #333;
+      transform: rotateY(180deg);
+      padding: 1rem;
+      color: #fff;
+    }
+    .filter-container {
+      margin-top: 1rem;
+    }
+    select {
+      background: #333;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 0.5rem;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    #home, #collection, #store, #settings, #profile {
+      background: #1e1e1e;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+      padding: 2rem;
+    }
+    .level-bar {
+      background: #555;
+      width: 100%;
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    .level-fill {
+      background: #ffcc00;
+      height: 100%;
+      width: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="#" onclick="switchPage('home')">Home</a>
+    <a href="#" onclick="switchPage('collection')">Collection</a>
+    <a href="#" onclick="switchPage('store')">Store</a>
+    <a href="#" onclick="switchPage('settings')">Settings</a>
+    <a href="#" onclick="switchPage('profile')">Profile</a>
+  </nav>
+
+  <div id="home" class="page">
+    <h1 class="title">Pup's Trading Cards</h1>
+    <div class="filter-container">
+      <label for="filter">Sort by:</label>
+      <select id="filter" onchange="filterCards()">
+        <option value="all">All</option>
+        <option value="speed">Speed</option>
+        <option value="style">Style</option>
+        <option value="loyalty">Loyalty</option>
+        <option value="rarity">Rarity</option>
+      </select>
+    </div>
+    <div class="card-container" id="cardContainer"></div>
+  </div>
+
+  <div id="collection" class="page">
+    <h1 class="title">My Collection</h1>
+    <p>Track your owned cards, favorites, and rare finds.</p>
+    <div class="card-container" id="collectionContainer"></div>
+  </div>
+
+  <div id="store" class="page">
+    <h1 class="title">Card Store</h1>
+    <p>Buy new packs, special editions, and rare NFTPups!</p>
+  </div>
+
+  <div id="settings" class="page">
+    <h1 class="title">Settings</h1>
+    <p>Customize your experience. Coming soon!</p>
+    <h2>UI Preferences</h2>
+    <button class="glow-button">Save Settings</button>
+    <div class="toggle-container">
+      <span class="toggle-label">Dark Mode</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="darkModeToggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div id="profile" class="page active">
+    <h1 class="title">Profile</h1>
+    <div class="sign-in-box">
+      <h2>Welcome Back!</h2>
+      <input type="text" placeholder="Username">
+      <h2 id="usernameDisplay"></h2>
+      <p>Level: <span id="level">5</span></p>
+      <div class="level-bar"><div class="level-fill"></div></div>
+    </div>
+  </div>
+
+  <script>
+    const switchPage = (pageId) => {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+    };
+
+    const cards = [
+      { name: "WoodyBlue", image: "assets/images/WoodyBlue.png", stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" }},
+      { name: "Ace", image: "assets/images/Ace.png", stats: { speed: 82, style: 57, loyalty: 78, rarity: "Rare" }},
+      { name: "LandBlue", image: "assets/images/LandBlue.png", stats: { speed: 43, style: 67, loyalty: 97, rarity: "Common" }},
+      { name: "Darla", image: "assets/images/Darla.png", stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" }},
+      { name: "SpacePup", image: "assets/images/SpacePup.png", stats: { speed: 60, style: 88, loyalty: 75, rarity: "Rare" }},
+      { name: "Rover", image: "assets/images/Rover.png", stats: { speed: 75, style: 95, loyalty: 64, rarity: "Epic" }},
+      { name: "Victor", image: "assets/images/Victor.png", stats: { speed: 69, style: 67, loyalty: 26, rarity: "Uncommon" }},
+      { name: "Jinx", image: "assets/images/Jinx.png", stats: { speed: 86, style: 80, loyalty: 65, rarity: "Rare" }}
+    ];
+
+    function renderCards(containerId, cardArray) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      cardArray.forEach(card => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card';
+        cardDiv.innerHTML = `
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="${card.image}" alt="${card.name}" />
+            </div>
+            <div class="card-back">
+              <h4>Stats</h4>
+              <ul>
+                <li>Speed: ${card.stats.speed}</li>
+                <li>Style: ${card.stats.style}</li>
+                <li>Loyalty: ${card.stats.loyalty}</li>
+                <li>Rarity: ${card.stats.rarity}</li>
+              </ul>
+            </div>
+          </div>
+        `;
+        cardDiv.addEventListener('click', () => {
+          cardDiv.classList.toggle('flipped');
+        });
+        container.appendChild(cardDiv);
+      });
+    }
+
+    function filterCards() {
+      const sortBy = document.getElementById('filter').value;
+      const filtered = sortBy === 'all'
+        ? cards
+        : [...cards].sort((a, b) => {
+            const aVal = a.stats[sortBy];
+            const bVal = b.stats[sortBy];
+            return typeof aVal === 'number' ? bVal - aVal : aVal.localeCompare(bVal);
+          });
+      renderCards('cardContainer', filtered);
+    }
+
+    renderCards('cardContainer', cards);
+    renderCards('collectionContainer', cards.slice(0, 3));
+  </script>
+</body>
+</html>
