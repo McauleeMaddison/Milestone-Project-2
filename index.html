@@ -1,304 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NFTPups</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <style>
-        
-        body {
-            
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(to right, #232526, #414345);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-        
-        nav {
-            background: #111;
-            display: flex;
-            justify-content: center;
-            padding: 1rem;
-            gap: 2rem;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NFTPups</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #232526, #414345);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
 
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+    nav {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      gap: 2rem;
+    }
 
-        nav a:hover {
-            color: #15a4e7;
-        }
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
 
-        .page {
-            display: none;
-            padding: 2rem;
-            animation: fadeIn 0.5s ease-in-out;
-        }
+    nav a:hover {
+      color: #15a4e7;
+    }
 
-        .page.active {
-            display: grid;
-        }
+    .page {
+      display: none;
+      padding: 2rem;
+      animation: fadeIn 0.5s ease-in-out;
+    }
 
-        .title {
-            font-size: 2rem;
-            color: #ffcc00;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-        }
+    .page.active {
+      display: block;
+    }
 
-        .card-container {
-            display: block;
-            flex-wrap: flex;
-            gap: 0rem;
-            margin-top: 0rem;
-        }
+    .title {
+      font-size: 2rem;
+      color: #ffcc00;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    }
 
-        .card {
-            width: 220px;
-            height: 260px;
-            perspective: 1000px;
-        }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
 
-        .card-inner {
-            width: 90%;
-            height: 100%;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-            position: relative;
-        }
+    .card {
+      width: 220px;
+      height: 260px;
+      perspective: 1000px;
+    }
 
-        .card.flipped .card-inner {
-            transform: rotateY(180deg);
-        }
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
 
-        .card-front,
-        .card-back {
-            position: absolute;
-            width: 90%;
-            height: 90%;
-            backface-visibility: hidden;
-            border-radius: 4%;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
 
-        .card-front {
-            background: #222222;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 4%;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
 
-        .card-front img {
-            max-width: 95%;
-            border-radius: 2%;
-        }
+    .card-front {
+      background: #222222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
 
-        .card-back {
-            background: #333;
-            transform: rotateY(180deg);
-            padding: 1rem;
-            color: #fff;
-        }
+    .card-front img {
+      max-width: 95%;
+      border-radius: 2%;
+    }
 
-        .filter-container {
-            margin-top: 1rem;
-        }
+    .card-back {
+      background: #333;
+      transform: rotateY(180deg);
+      padding: 1rem;
+      color: #fff;
+    }
 
-        select {
-            background: #333;
-            color: #fff;
-            border: 1px solid #555;
-            padding: 0.5rem;
-        }
+    .filter-container {
+      margin-top: 1rem;
+    }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
+    select {
+      background: #333;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 0.5rem;
+    }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-#Home,
-#collection,
-#store,
-#settings,
-#profile {
-    background: #1e1e1e;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
-    padding: 2rem;
-}
-    </style>
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #home,
+    #collection,
+    #store,
+    #settings,
+    #profile {
+      background: #1e1e1e;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+      padding: 2rem;
+    }
+
+    .toggle-container {
+      margin-top: 1rem;
+    }
+
+    .toggle-label {
+      margin-right: 10px;
+    }
+
+    .profile-container {
+      margin-top: 2rem;
+    }
+
+    .sign-in-box {
+      background-color: #2a2a2a;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .level-bar {
+      width: 100%;
+      height: 10px;
+      background: #444;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+    }
+
+    .level-fill {
+      height: 100%;
+      width: 60%;
+      background: #ffcc00;
+      border-radius: 5px;
+    }
+  </style>
 </head>
-
 <body>
-    <nav>
-        <a href="index.html" onclick="switchPage('home')">Home</a>
-        <a href="collection.html" onclick="switchPage('collection')">Collection</a>
-        <a href="#" onclick="switchPage('store')">Store</a>
-        <a href="#" onclick="switchPage('settings')">Settings</a>
-        <a href="profile.html" onclick="switchPage('profile')">Profile</a>
-    </nav>
+  <nav>
+    <a href="#" onclick="switchPage('home'); return false;">Home</a>
+    <a href="#" onclick="switchPage('collection'); return false;">Collection</a>
+    <a href="#" onclick="switchPage('store'); return false;">Store</a>
+    <a href="#" onclick="switchPage('settings'); return false;">Settings</a>
+    <a href="#" onclick="switchPage('profile'); return false;">Profile</a>
+  </nav>
 
-    <div id="home" class="page active">
-        <h1 class="title">Pup`s Trading Cards</h1>
-        <div class="filter-container">
-            <label for="filter">Sort by:</label>
-            <select id="filter" onchange="filterCards()">
-                <option value="all">All</option>
-                <option value="speed">Speed</option>
-                <option value="style">Style</option>
-                <option value="loyalty">Loyalty</option>
-                <option value="rarity">Rarity</option>
-            </select>
-        </div>
-        <div class="card-container" id="cardContainer"></div>
+  <div id="home" class="page active">
+    <h1 class="title">Pup's Trading Cards</h1>
+    <div class="filter-container">
+      <label for="filter">Sort by:</label>
+      <select id="filter" onchange="filterCards()">
+        <option value="all">All</option>
+        <option value="speed">Speed</option>
+        <option value="style">Style</option>
+        <option value="loyalty">Loyalty</option>
+        <option value="rarity">Rarity</option>
+      </select>
+    </div>
+    <div class="card-container" id="cardContainer"></div>
+  </div>
+
+  <div id="collection" class="page">
+    <h1 class="title">My Collection</h1>
+    <p>Track your owned cards, favorites, and rare finds.</p>
+    <div class="carousel-container">
+      <div class="card-container" id="collectionContainer"></div>
+    </div>
+  </div>
+
+  <div id="store" class="page">
+    <h1 class="title">Card Store</h1>
+    <p>Buy new packs, special editions, and rare hoodie doggos!</p>
+  </div>
+
+  <div id="settings" class="page">
+    <h1 class="title">Settings</h1>
+    <p>Customize your experience. Coming soon!</p>
+    <h2>UI Preferences</h2>
+
+    <button class="glow-button">Save Settings</button>
+
+    <div class="toggle-container">
+      <span class="toggle-label">Dark Mode</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="darkModeToggle" />
+        <span class="slider"></span>
+      </label>
     </div>
 
-    <div id="collection" class="page">
-        <h1 class="title">My Collection</h1>
-        <p>Track your owned cards, favorites, and rare finds.</p>
-        <div class="carousel-container">
-            <div class="card-carousel" id="collectionContainer"></div>
+    <div class="profile-container">
+      <div class="sign-in-box">
+        <h2>Welcome Back!</h2>
+        <input type="text" placeholder="Username">
+        <div class="user-level" id="userLevelBox1"></div>
+        <div class="level-bar">
+          <div class="level-fill"></div>
         </div>
+        <h2 id="usernameDisplay">User</h2>
+        <p>Level: <span id="level">5</span></p>
+      </div>
     </div>
+  </div>
 
-    <div id="store" class="page">
-        <h1 class="title">Card Store</h1>
-        <p>Buy new packs, special editions, and rare hoodie doggos!</p>
-    </div>
+  <div id="profile" class="page">
+    <h1 class="title">User Profile</h1>
+    <p>Your profile information and achievements.</p>
+  </div>
 
-    <div id="settings" class="page">
-        <h1 class="title">Settings</h1>
-        <p>Customize your experience. Coming soon!</p>
-        <h2>UI Preferences</h2>
+  <script>
+    function switchPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => {
+        page.classList.remove('active');
+      });
+      const target = document.getElementById(pageId);
+      if (target) {
+        target.classList.add('active');
+      }
+    }
 
-        <button class="glow-button">Save Settings</button>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = [
+        {
+          name: "Shadow",
+          image: "images/shadow.png",
+          stats: { speed: 7, style: 10, loyalty: 8, rarity: "Legendary" }
+        },
+        {
+          name: "Blaze",
+          image: "images/blaze.png",
+          stats: { speed: 9, style: 9, loyalty: 6, rarity: "Epic" }
+        },
+        {
+          name: "Nova",
+          image: "images/nova.png",
+          stats: { speed: 6, style: 8, loyalty: 10, rarity: "Rare" }
+        }
+      ];
 
-        <div class="toggle-container">
-            <span class="toggle-label">Dark Mode</span>
-            <label class="toggle-switch">
-                <input type="checkbox" id="darkModeToggle" />
-                <span class="slider"></span>
-            </label>
-        </div>
-
-        <div class="profile-container">
-            <div class="sign-in-box">
-              <h2>Welcome Back!</h2>
-              <input type="text" placeholder="Username">
-            <div class="user-level" id="userLevelBox">
-            <div class="user-level" id="userLevelBox">
-            </div>
-        
-              <div class="level-bar"><div class="level-fill"></div></div>
-              <h2 id="usernameDisplay"></h2>
-              <p>Level: <span id="level">5</span></p>
-              <div class="level-bar">
+      function renderCards(containerId, cards) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        cards.forEach(card => {
+          const cardDiv = document.createElement('div');
+          cardDiv.classList.add('card');
+          cardDiv.innerHTML = `
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="${card.image}" alt="${card.name}" />
               </div>
-
-<script>
-const switchPage = (pageId) => {
-document.querySelectorAll('.page').forEach(page => {
- page.classList.remove('active');
-});
- document.getElementById(pageId).classList.add('active');
-};
-
-const cards = [
-{
-name: "WoodyBlue",
-image: "assets/images/WoodyBlue.png",
-stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" }
-  },{
-name: "Ace",
-image: "assets/images/Ace.png",
-stats: { speed: 82, style: 57, loyalty: 78, rarity: "Rare" }
-  },{
-name: "LandBlue",
-image: "assets/images/LandBlue.png",
-stats: { speed: 43, style: 67, loyalty: 97, rarity: "Common" }
-  },{
-name: "Darla",
-image: "assets/images/Darla.png",
-stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" }
-  },{
-name: "SpacePup",
-image: "assets/images/SpacePup.png",
-status: { speed: 60, style: 88, loyalty: 75, rarity: "Rare" }
-  },{
-name: "Rover",
-image: "assets/images/Rover.png",
-stats: { speed: 75, style: 95, loyalty: 64, rarity: "Epic" }
-  },{
-name: "Victor",
-image: "assets/images/Victor.png",
-stats: { speed: 69, style: 67, loyalty: 26, rarity: "Uncommon" }
-  },{
-name: "Jinx",
-image: "assets/images/Jinx.png",
-stats: { speed: 86, style: 80, loyalty: 65, rarity: "Rare" }
-  },
- ];
-// Add more cards as needed
-
-function renderCards(containerId, cardArray) {
-const container = document.getElementById(containerId);
-cardArray.forEach(card => {
- const cardDiv = document.createElement('div');
- cardDiv.className = 'card';
- cardDiv.innerHTML = `
-          <div class="card-inner">
-            <div class="card-front">
-              <img src="${card.image}" alt="${card.name}" />
+              <div class="card-back">
+                <h4>${card.name}</h4>
+                <ul>
+                  <li>Speed: ${card.stats.speed}</li>
+                  <li>Style: ${card.stats.style}</li>
+                  <li>Loyalty: ${card.stats.loyalty}</li>
+                  <li>Rarity: ${card.stats.rarity}</li>
+                </ul>
+              </div>
             </div>
-            <div class="card-back">
-              <h4>Stats</h4>
-              <ul>
-                <li>Speed: ${card.stats.speed}</li>
-                <li>Style: ${card.stats.style}</li>
-                <li>Loyalty: ${card.stats.loyalty}</li>
-                <li>Rarity: ${card.stats.rarity}</li>
-              </ul>
-            </div>
-          </div>
-        `;
-cardDiv.addEventListener('click', () => {
-cardDiv.classList.toggle('flipped');
- });
-container.appendChild(cardDiv);
-});
- }
- function filterCards() {
-const sortBy = document.getElementById('filter').value;
- if (sortBy === "all") {
- renderCards('cardContainer', cards);
- return;
-}
-const sorted = [...cards].sort((a, b) => {
-if (typeof a.stats[sortBy] === "number") {
- return b.stats[sortBy] - a.stats[sortBy];
- } else {
- return a.stats[sortBy].localeCompare(b.stats[sortBy]);
-  }
- });
-renderCards('cardContainer', sorted);
- }
-renderCards('cardContainer', cards);
-renderCards('collectionContainer', cards.slice(0, 2));
-</script>
+          `;
+          cardDiv.addEventListener('click', () => {
+            cardDiv.classList.toggle('flipped');
+          });
+          container.appendChild(cardDiv);
+        });
+      }
+
+      window.filterCards = function () {
+        const sortBy = document.getElementById('filter').value;
+        if (sortBy === "all") {
+          renderCards('cardContainer', cards);
+          return;
+        }
+        const sorted = [...cards].sort((a, b) => {
+          if (typeof a.stats[sortBy] === "number") {
+            return b.stats[sortBy] - a.stats[sortBy];
+          } else {
+            return a.stats[sortBy].localeCompare(b.stats[sortBy]);
+          }
+        });
+        renderCards('cardContainer', sorted);
+      };
+
+      renderCards('cardContainer', cards);
+      renderCards('collectionContainer', cards.slice(0, 2));
+    });
+  </script>
 </body>
-
 </html>

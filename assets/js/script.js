@@ -1,65 +1,65 @@
-function openPack(packId){
-  const container = document.getElementById(packId);
-  if (!container.classList.contains('open'))
-    container.classList.add('open');
-    container.style.display = 'flex';
-
-const cards = [
-  {
-  name: "WoodyBlue",
-  image: "assets/images/WoodyBlue.png",
-  stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" }
-    },{
-  name: "Ace",
-  image: "assets/images/Ace.png",
-  stats: { speed: 82, style: 57, loyalty: 78, rarity: "Rare" }
-    },{
-  name: "LandBlue",
-  image: "assets/images/LandBlue.png",
-  stats: { speed: 43, style: 67, loyalty: 97, rarity: "Common" }
-    },{
-  name: "Darla",
-  image: "assets/images/Darla.png",
-  stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" }
-    },{
-  name: "SpacePup",
-  image: "assets/images/SpacePup.png",
-  status: { speed: 60, style: 88, loyalty: 75, rarity: "Rare" }
-    },{
-  name: "Rover",
-  image: "assets/images/Rover.png",
-  stats: { speed: 75, style: 95, loyalty: 64, rarity: "Epic" }
-    },{
-  name: "Victor",
-  image: "assets/images/Victor.png",
-  stats: { speed: 69, style: 67, loyalty: 26, rarity: "Uncommon" }
-    },{
-  name: "Jinx",
-  image: "assets/images/Jinx.png",
-  stats: { speed: 86, style: 80, loyalty: 65, rarity: "Rare" }
-    },
-   ];
-
-   renderCards(packId, cards);
-  }
-
 function switchPage(pageId) {
   document.querySelectorAll('.page').forEach(page => {
     page.classList.remove('active');
   });
   document.getElementById(pageId).classList.add('active');
 }
-function renderCollectionCards(containerId, cardArray) {
+
+// ========== CARD DATA ==========
+const cryptopups = [
+  {
+    name: "Darla",
+    image: "assets/images/cryptopups/Darla.png",
+    stats: { speed: 85, style: 90, loyalty: 95, rarity: "Epic" }
+  },
+  {
+    name: "WoodyBlue",
+    image: "assets/images/cryptopups/WoodyBlue.png",
+    stats: { speed: 75, style: 88, loyalty: 92, rarity: "Rare" }
+  }
+];
+
+const cyberpups = [
+  {
+    name: "Jinx",
+    image: "assets/images/cyberpups/Jinx.png",
+    stats: { speed: 80, style: 85, loyalty: 80, rarity: "Ultra Rare" }
+  },
+  {
+    name: "Nukie",
+    image: "assets/images/cyberpups/Nukie.png",
+    stats: { speed: 78, style: 89, loyalty: 84, rarity: "Rare" }
+  }
+];
+
+const alienpups = [
+  {
+    name: "Lucy",
+    image: "assets/images/alienpups/Lucy.png",
+    stats: { speed: 70, style: 95, loyalty: 90, rarity: "Legendary" }
+  },
+  {
+    name: "AlienPup",
+    image: "assets/images/alienpups/AlienPup.png",
+    stats: { speed: 82, style: 91, loyalty: 86, rarity: "Epic" }
+  }
+];
+
+const cards = [...cryptopups, ...cyberpups, ...alienpups];
+
+// ========== RENDER CARDS ==========
+function renderCards(containerId, cardArray) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
   cardArray.forEach(card => {
     const cardDiv = document.createElement('div');
     cardDiv.className = 'collection-card';
     cardDiv.innerHTML = `
-        <div class="card-inner-face card-front-face">
+      <div class="card-inner">
+        <div class="card-front">
           <img src="${card.image}" alt="${card.name}" />
         </div>
-        <div class="card-inner-face card-back-face">
+        <div class="card-back">
           <h4>${card.name}</h4>
           <ul>
             <li>Speed: ${card.stats.speed}</li>
@@ -68,28 +68,8 @@ function renderCollectionCards(containerId, cardArray) {
             <li>Rarity: ${card.stats.rarity}</li>
           </ul>
         </div>
-      `;
-    cardDiv.addEventListener('click', () => {
-      cardDiv.classList.toggle('flipped');
-    });
-    container.appendChild(cardDiv);
-    // Flip cards (main/home)
-    cardDiv.innerHTML = `
-          <div class="card-inner">
-            <div class="card-front">
-              <img src="${card.image}"/>
-            </div>
-            <div class="card-back">
-              <h4>Stats</h4>
-              <ul>
-                <li>Speed: ${card.stats.speed}</li>
-                <li>Style: ${card.stats.style}</li>
-                <li>Loyalty: ${card.stats.loyalty}</li>
-                <li>Rarity: ${card.stats.rarity}</li>
-              </ul>
-            </div>
-          </div>
-        `;
+      </div>
+    `;
     cardDiv.addEventListener('click', () => {
       cardDiv.classList.toggle('flipped');
     });
@@ -97,6 +77,7 @@ function renderCollectionCards(containerId, cardArray) {
   });
 }
 
+// ========== SIGN IN ==========
 function signIn() {
   const username = document.querySelector('input[type="text"]').value;
   document.querySelector('.sign-in-box').style.display = 'none';
@@ -104,6 +85,7 @@ function signIn() {
   document.getElementById('usernameDisplay').textContent = `${username}'s Profile`;
 }
 
+// ========== FILTER CARDS ==========
 function filterCards() {
   const sortBy = document.getElementById('filter').value;
   if (sortBy === "all") {
@@ -122,20 +104,71 @@ function filterCards() {
   renderCards('cardContainer', sorted);
 }
 
+// ========== OPEN PACK ==========
+function openPack(packName) {
+  let cards = [];
+  if (packName === "cryptopups") cards = cryptopups;
+  if (packName === "cyberpups") cards = cyberpups;
+  if (packName === "alienpups") cards = alienpups;
+
+  const display = document.getElementById("packDisplay");
+  display.innerHTML = "";
+
+  cards.forEach((card, index) => {
+    setTimeout(() => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <div class="card-inner flipped">
+          <div class="card-front">
+            <img src="${card.image}" alt="${card.name}" />
+          </div>
+          <div class="card-back">
+            <h4>${card.name}</h4>
+            <ul>
+              <li>Speed: ${card.stats.speed}</li>
+              <li>Style: ${card.stats.style}</li>
+              <li>Loyalty: ${card.stats.loyalty}</li>
+              <li>Rarity: ${card.stats.rarity}</li>
+            </ul>
+          </div>
+        </div>
+      `;
+      display.appendChild(div);
+
+      const rect = div.getBoundingClientRect();
+      const sparkleX = rect.left + rect.width / 2 + Math.random() * 100 - 50;
+      const sparkleY = rect.top + rect.height / 2 + Math.random() * 60 - 30;
+      createSparkle(sparkleX, sparkleY);
+    }, index * 200);
+  });
+}
+
+// ========== SPARKLE EFFECT ==========
+function createSparkle(x, y) {
+  const sparkle = document.createElement("div");
+  sparkle.className = "sparkle";
+  sparkle.style.left = `${x}px`;
+  sparkle.style.top = `${y}px`;
+  document.body.appendChild(sparkle);
+
+  setTimeout(() => {
+    sparkle.remove();
+  }, 1000);
+}
+
+// ========== INITIALISE ==========
 document.addEventListener("DOMContentLoaded", () => {
-  // Home
   if (document.getElementById('cardContainer')) {
     renderCards('cardContainer', cards);
   }
 
-  // Collection
   if (document.getElementById('collectionContainer')) {
     renderCards('collectionContainer', cards);
   }
 
-  // Profile Carousel
   if (document.getElementById('profileCardCarousel')) {
-    const topCards = cards.slice(0, 3); // Change to your featured cards
+    const topCards = cards.slice(0, 3);
     renderCards('profileCardCarousel', topCards);
   }
 });
