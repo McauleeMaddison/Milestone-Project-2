@@ -155,14 +155,14 @@
 </head>
 <body>
   <nav>
-    <a href="index.html" onclick="switchPage('home')">Home</a>
-    <a href="collection.html" onclick="switchPage('collection')">Collection</a>
+    <a href="#" onclick="switchPage('home')">Home</a>
+    <a href="#" onclick="switchPage('collection')">Collection</a>
     <a href="#" onclick="switchPage('store')">Store</a>
     <a href="#" onclick="switchPage('settings')">Settings</a>
-    <a href="profile.html" onclick="switchPage('profile')">Profile</a>
+    <a href="#" onclick="switchPage('profile')">Profile</a>
   </nav>
 
-  <div id="home" class="page active">
+  <div id="home" class="page">
     <h1 class="title">All NFTPups</h1>
     <div class="filter-container">
       <label for="filter">Sort by:</label>
@@ -175,20 +175,19 @@
       </select>
     </div>
     <div class="card-container" id="cardContainer"></div>
-  </div>
 
-  <div id="collection" class="page">
+  <div id="collection" class="page active">
     <h1 class="title">My Collection</h1>
     <div class="card-pack" onclick="openPack('cryptopups')">
-      <img src="assets/images/cryptopups/MoonPup.png"/>
+      <img src="assets/images/cryptopups/MoonPup.png" alt="MoonPup - Cryptopups Collection"/>
       <h3>Cryptopups</h3>
     </div>
     <div class="card-pack" onclick="openPack('cyberpups')">
-      <img src="assets/images/cyberpups/Elsie.png"/>
+      <img src="assets/images/cyberpups/Elsie.png" alt="Elsie - Cyberpups Collection"/>
         <h3>Cyberpups</h3>
     </div>
     <div class="card-pack" onclick="openPack('alienpups')">
-      <img src="assets/images/alienpups/Tima.png"/>
+      <img src="assets/images/alienpups/Tima.png" alt="Tima - Alienpups Collection"/>
         <h3>Alienpups</h3>
     </div>
     <div id="packDisplay" class="card-display-area"></div>
@@ -198,16 +197,19 @@
     <h1 class="title">Card Store</h1>
     <p>Buy new packs, special editions, and rare NFTPups!</p>
   </div>
+</div>
 
   <div id="settings" class="page">
     <h1 class="title">Settings</h1>
     <p>Customize your experience. Coming soon!</p>
   </div>
+</div>
 
   <div id="profile" class="page">
     <h1 class="title">Profile Page</h1>
     <p>View Your Level and Sign in</p>
   </div>
+</div>
 
   <script>
     const switchPage = (pageId) => {
