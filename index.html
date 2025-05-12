@@ -175,11 +175,11 @@
 </head>
 <body>
   <nav>
-    <a href="#" onclick="switchPage('home'); return false;">Home</a>
-    <a href="#" onclick="switchPage('collection'); return false;">Collection</a>
+    <a href="index.html" onclick="switchPage('home'); return false;">Home</a>
+    <a href="collection.html" onclick="switchPage('collection'); return false;">Collection</a>
     <a href="#" onclick="switchPage('store'); return false;">Store</a>
     <a href="#" onclick="switchPage('settings'); return false;">Settings</a>
-    <a href="#" onclick="switchPage('profile'); return false;">Profile</a>
+    <a href="profile.html" onclick="switchPage('profile'); return false;">Profile</a>
   </nav>
 
   <div id="home" class="page active">
@@ -203,7 +203,7 @@
     <div class="carousel-container">
       <div class="card-container" id="collectionContainer"></div>
     </div>
-  </div>
+    </div>
 
   <div id="store" class="page">
     <h1 class="title">Card Store</h1>
@@ -224,6 +224,8 @@
         <span class="slider"></span>
       </label>
     </div>
+  
+  
 
     <div class="profile-container">
       <div class="sign-in-box">
@@ -243,6 +245,7 @@
     <h1 class="title">User Profile</h1>
     <p>Your profile information and achievements.</p>
   </div>
+
 
   <script>
     function switchPage(pageId) {
