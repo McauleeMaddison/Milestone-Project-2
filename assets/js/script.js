@@ -1,8 +1,10 @@
+// ========== PAGE SWITCHING ========== //
 function switchPage(pageId) {
   document.querySelectorAll('.page').forEach(page => {
     page.classList.remove('active');
   });
-  document.getElementById(pageId).classList.add('active');
+  const targetPage = document.getElementById(pageId);
+  if (targetPage) targetPage.classList.add('active');
 }
 
 // ========== CARD DATA ==========
@@ -45,11 +47,12 @@ const alienpups = [
   }
 ];
 
-const cards = [...cryptopups, ...cyberpups, ...alienpups];
+const allCards = [...cryptopups, ...cyberpups, ...alienpups];
 
 // ========== RENDER CARDS ========== //
 function renderCards(containerId, cardArray) {
   const container = document.getElementById(containerId);
+  if (!container) return;
   container.innerHTML = "";
   cardArray.forEach(card => {
     const cardDiv = document.createElement('div');
@@ -79,7 +82,10 @@ function renderCards(containerId, cardArray) {
 
 // ========== SIGN IN ========== //
 function signIn() {
-  const username = document.querySelector('input[type="text"]').value;
+  const usernameInput = document.querySelector('input[type="text"]');
+  const username = usernameInput ? usernameInput.value.trim() : "";
+  if (!username) return;
+
   document.querySelector('.sign-in-box').style.display = 'none';
   document.getElementById('userLevelBox').style.display = 'block';
   document.getElementById('usernameDisplay').textContent = `${username}'s Profile`;
@@ -87,18 +93,22 @@ function signIn() {
 
 // ========== FILTER CARDS ========== //
 function filterCards() {
-  const sortBy = document.getElementById('filter').value;
+  const filterEl = document.getElementById('filter');
+  if (!filterEl) return;
+
+  const sortBy = filterEl.value;
   if (sortBy === "all") {
-    renderCards('cardContainer', cards);
+    renderCards('cardContainer', allCards);
     return;
   }
 
-  const sorted = [...cards].sort((a, b) => {
-    if (typeof a.stats[sortBy] === "number") {
-      return b.stats[sortBy] - a.stats[sortBy];
-    } else {
-      return a.stats[sortBy].localeCompare(b.stats[sortBy]);
+  const sorted = [...allCards].sort((a, b) => {
+    const valA = a.stats[sortBy];
+    const valB = b.stats[sortBy];
+    if (typeof valA === "number") {
+      return valB - valA;
     }
+    return valA.localeCompare(valB);
   });
 
   renderCards('cardContainer', sorted);
@@ -106,15 +116,26 @@ function filterCards() {
 
 // ========== OPEN PACK ========== //
 function openPack(packName) {
-  let cards = [];
-  if (packName === "cryptopups") cards = cryptopups;
-  if (packName === "cyberpups") cards = cyberpups;
-  if (packName === "alienpups") cards = alienpups;
+  let selectedCards = [];
+  switch (packName) {
+    case "cryptopups":
+      selectedCards = cryptopups;
+      break;
+    case "cyberpups":
+      selectedCards = cyberpups;
+      break;
+    case "alienpups":
+      selectedCards = alienpups;
+      break;
+    default:
+      return;
+  }
 
   const display = document.getElementById("packDisplay");
+  if (!display) return;
   display.innerHTML = "";
 
-  cards.forEach((card, index) => {
+  selectedCards.forEach((card, index) => {
     setTimeout(() => {
       const div = document.createElement("div");
       div.className = "card";
@@ -139,7 +160,9 @@ function openPack(packName) {
       const rect = div.getBoundingClientRect();
       const sparkleX = rect.left + rect.width / 2 + Math.random() * 100 - 50;
       const sparkleY = rect.top + rect.height / 2 + Math.random() * 60 - 30;
-      createSparkle(sparkleX, sparkleY);
+      if (typeof createSparkle === 'function') {
+        createSparkle(sparkleX, sparkleY);
+      }
     }, index * 200);
   });
 }
@@ -147,10 +170,10 @@ function openPack(packName) {
 // ========== INITIALISE ========== //
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById('cardContainer')) {
-    renderCards('cardContainer', cards);
+    renderCards('cardContainer', allCards);
   }
 
   if (document.getElementById('collectionContainer')) {
-    renderCards('collectionContainer', cards);
+    renderCards('collectionContainer', allCards);
   }
 });
