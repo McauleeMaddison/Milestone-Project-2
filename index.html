@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NFTPups</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
@@ -185,11 +186,11 @@
       border-radius: 50%;
     }
 
-    .toggle-switch input:checked + .slider {
+    .toggle-switch input:checked+.slider {
       background-color: #15a4e7;
     }
 
-    .toggle-switch input:checked + .slider:before {
+    .toggle-switch input:checked+.slider:before {
       transform: translateX(20px);
     }
 
@@ -219,6 +220,7 @@
     }
   </style>
 </head>
+
 <body>
   <nav>
     <a href="index.html" onclick="switchPage('home'); return false;">Home</a>
@@ -248,83 +250,83 @@
     <p>Track your owned cards, favorites, and rare finds.</p>
     <div class="carousel-container">
       <div class="card-container" id="collectionContainer">
-     </div>
+      </div>
 
-  <div id="store" class="page">
-    <h1 class="title">Card Store</h1>
-    <p>Buy new packs, special editions, and rare NFTPups!</p>
+      <div id="store" class="page">
+        <h1 class="title">Card Store</h1>
+        <p>Buy new packs, special editions, and rare NFTPups!</p>
+      </div>
 
+      <div id="settings" class="page">
+        <h1 class="title">Settings</h1>
+        <p>Customize your experience!</p>
+        <h2>UI Preferences</h2>
 
-  <div id="settings" class="page">
-    <h1 class="title">Settings</h1>
-    <p>Customize your experience!</p>
-    <h2>UI Preferences</h2>
+        <button class="glow-button">Save Settings</button>
 
-    <button class="glow-button">Save Settings</button>
-
-    <div class="toggle-container">
-      <span class="toggle-label">Dark Mode</span>
-      <label class="toggle-switch">
-        <input type="checkbox" id="darkModeToggle"/>
-        <span class="slider"></span>
-      </label>
-    </div>
-
-    <div class="profile-container">
-      <div class="sign-in-box">
-        <h2>Welcome Back!</h2>
-        <input type="text" placeholder="Username">
-        <div class="user-level" id="userLevelBox1"></div>
-        <div class="level-bar">
-          <div class="level-fill"></div>
+        <div class="toggle-container">
+          <span class="toggle-label">Dark Mode</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="darkModeToggle" />
+            <span class="slider"></span>
+          </label>
         </div>
-        <h2 id="usernameDisplay">User</h2>
-        <p>Level: <span id="level">5</span></p>
+
+        <div class="profile-container">
+          <div class="sign-in-box">
+            <h2>Welcome Back!</h2>
+            <input type="text" placeholder="Username">
+            <div class="user-level" id="userLevelBox1"></div>
+            <div class="level-bar">
+              <div class="level-fill"></div>
+            </div>
+            <h2 id="usernameDisplay">User</h2>
+            <p>Level: <span id="level">5</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="profile" class="page">
+        <h1 class="title">User Profile</h1>
+        <p>Your profile information and achievements.</p>
       </div>
     </div>
-  </div>
 
-  <div id="profile" class="page">
-    <h1 class="title">User Profile</h1>
-    <p>Your profile information and achievements.</p>
-  </div>
-</div>
+    <script>
+      function switchPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+          page.classList.remove('active');
+        });
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add('active');
+      }
 
-  <script>
-    function switchPage(pageId) {
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
-      const target = document.getElementById(pageId);
-      if (target) target.classList.add('active');
-    }
+      document.addEventListener('DOMContentLoaded', () => {
+        const cards = [
+          {
+            name: "Gibbons",
+            image: "assets/images/cyberpups/Gibbons.png",
+            stats: { speed: 7, style: 10, loyalty: 8, rarity: "Legendary" }
+          },
+          {
+            name: "FloatyBlue",
+            image: "assets/images/cryptopups/FloatyBlue.png",
+            stats: { speed: 9, style: 9, loyalty: 6, rarity: "Epic" }
+          },
+          {
+            name: "Lucy",
+            image: "assets/images/alienpups/Lucy.png",
+            stats: { speed: 6, style: 8, loyalty: 10, rarity: "Rare" }
+          }
+        ];
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = [
-        {
-          name: "Gibbons",
-          image: "assets/images/cyberpups/Gibbons.png",
-          stats: { speed: 7, style: 10, loyalty: 8, rarity: "Legendary" }
-        },
-        {
-          name: "FloatyBlue",
-          image: "assets/images/cryptopups/FloatyBlue.png",
-          stats: { speed: 9, style: 9, loyalty: 6, rarity: "Epic" }
-        },
-        {
-          name: "Lucy",
-          image: "assets/images/alienpups/Lucy.png",
-          stats: { speed: 6, style: 8, loyalty: 10, rarity: "Rare" }
-        }
-      ];
-
-      function renderCards(containerId, cardsToRender) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = '';
-        cardsToRender.forEach(card => {
-          const cardDiv = document.createElement('div');
-          cardDiv.classList.add('card');
-          cardDiv.innerHTML = `
+        function renderCards(containerId, cardsToRender) {
+          const container = document.getElementById(containerId);
+          container.innerHTML = '';
+          cardsToRender.forEach(card => {
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add('card');
+            cardDiv.innerHTML = `
             <div class="card-inner">
               <div class="card-front">
                 <img src="${card.image}" alt="${card.name}" />
@@ -342,42 +344,43 @@
               </div>
             </div>
           `;
-          cardDiv.addEventListener('click', () => {
-            cardDiv.classList.toggle('flipped');
+            cardDiv.addEventListener('click', () => {
+              cardDiv.classList.toggle('flipped');
+            });
+            container.appendChild(cardDiv);
           });
-          container.appendChild(cardDiv);
-        });
-      }
-
-      window.filterCards = function () {
-        const sortBy = document.getElementById('filter').value;
-        if (sortBy === "all") {
-          renderCards('cardContainer', cards);
-          return;
         }
-        const sorted = [...cards].sort((a, b) => {
-          if (typeof a.stats[sortBy] === "number") {
-            return b.stats[sortBy] - a.stats[sortBy];
-          } else {
-            return a.stats[sortBy].localeCompare(b.stats[sortBy]);
+
+        window.filterCards = function () {
+          const sortBy = document.getElementById('filter').value;
+          if (sortBy === "all") {
+            renderCards('cardContainer', cards);
+            return;
           }
+          const sorted = [...cards].sort((a, b) => {
+            if (typeof a.stats[sortBy] === "number") {
+              return b.stats[sortBy] - a.stats[sortBy];
+            } else {
+              return a.stats[sortBy].localeCompare(b.stats[sortBy]);
+            }
+          });
+          renderCards('cardContainer', sorted);
+        };
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('change', () => {
+          const isDark = darkModeToggle.checked;
+          document.body.style.background = isDark
+            ? 'linear-gradient(to right, #000, #222)'
+            : 'linear-gradient(to right, #232526, #414345)';
+          document.body.style.color = isDark ? '#eee' : '#fff';
         });
-        renderCards('cardContainer', sorted);
-      };
 
-      // Dark mode toggle
-      const darkModeToggle = document.getElementById('darkModeToggle');
-      darkModeToggle.addEventListener('change', () => {
-        const isDark = darkModeToggle.checked;
-        document.body.style.background = isDark
-          ? 'linear-gradient(to right, #000, #222)'
-          : 'linear-gradient(to right, #232526, #414345)';
-        document.body.style.color = isDark ? '#eee' : '#fff';
+        renderCards('cardContainer', cards);
+        renderCards('collectionContainer', cards.slice(0, 2));
       });
-
-      renderCards('cardContainer', cards);
-      renderCards('collectionContainer', cards.slice(0, 2));
-    });
-  </script>
+    </script>
 </body>
+
 </html>

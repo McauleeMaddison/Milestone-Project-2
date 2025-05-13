@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NFTPups</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
@@ -49,7 +50,8 @@
       text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
     }
 
-    .card-container, .card-display-area {
+    .card-container,
+    .card-display-area {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
@@ -146,7 +148,11 @@
       }
     }
 
-    #home, #collection, #store, #settings, #profile {
+    #home,
+    #collection,
+    #store,
+    #settings,
+    #profile {
       background: #1e1e1e;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
@@ -157,14 +163,14 @@
 
 <body>
   <nav>
-    <a href="#" onclick="switchPage('home')">Home</a>
-    <a href="#" onclick="switchPage('collection')">Collection</a>
+    <a href="index.html" onclick="switchPage('home')">Home</a>
+    <a href="collection.html" onclick="switchPage('collection')">Collection</a>
     <a href="#" onclick="switchPage('store')">Store</a>
     <a href="#" onclick="switchPage('settings')">Settings</a>
-    <a href="#" onclick="switchPage('profile')">Profile</a>
+    <a href="profile.html" onclick="switchPage('profile')">Profile</a>
   </nav>
 
-  <div id="home" class="page active">
+  <div id="home" class="page">
     <h1 class="title">All NFTPups</h1>
     <div class="filter-container">
       <label for="filter">Sort by:</label>
@@ -179,7 +185,7 @@
     <div class="card-container" id="cardContainer"></div>
   </div>
 
-  <div id="collection" class="page">
+  <div id="collection" class="page active">
     <h1 class="title">My Collection</h1>
     <div class="card-pack" onclick="openPack('cryptopups')">
       <img src="assets/images/cryptopups/MoonPup.png" alt="Cryptopups: MoonPup" />
@@ -221,14 +227,14 @@
     };
 
     const cards = [
-      { name: "WoodyBlue", image: "assets/images/cryptopups/WoodyBlue.png", stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" }},
-      { name: "Ace", image: "assets/images/cyberpups/Ace.png", stats: { speed: 82, style: 57, loyalty: 78, rarity: "Rare" }},
-      { name: "LandBlue", image: "assets/images/cryptopups/LandBlue.png", stats: { speed: 43, style: 67, loyalty: 97, rarity: "Common" }},
-      { name: "Darla", image: "assets/images/cryptopups/Darla.png", stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" }},
-      { name: "SpacePup", image: "assets/images/cryptopups/SpacePup.png", stats: { speed: 60, style: 88, loyalty: 75, rarity: "Rare" }},
-      { name: "Rover", image: "assets/images/alienpups/Rover.png", stats: { speed: 75, style: 95, loyalty: 64, rarity: "Epic" }},
-      { name: "Victor", image: "assets/images/alienpups/Victor.png", stats: { speed: 69, style: 67, loyalty: 26, rarity: "Uncommon" }},
-      { name: "Jinx", image: "assets/images/cyberpups/Jinx.png", stats: { speed: 86, style: 80, loyalty: 65, rarity: "Rare" }},
+      { name: "WoodyBlue", image: "assets/images/cryptopups/WoodyBlue.png", stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" } },
+      { name: "Ace", image: "assets/images/cyberpups/Ace.png", stats: { speed: 82, style: 57, loyalty: 78, rarity: "Rare" } },
+      { name: "LandBlue", image: "assets/images/cryptopups/LandBlue.png", stats: { speed: 43, style: 67, loyalty: 97, rarity: "Common" } },
+      { name: "Darla", image: "assets/images/cryptopups/Darla.png", stats: { speed: 60, style: 80, loyalty: 97, rarity: "Legendary" } },
+      { name: "SpacePup", image: "assets/images/cryptopups/SpacePup.png", stats: { speed: 60, style: 88, loyalty: 75, rarity: "Rare" } },
+      { name: "Rover", image: "assets/images/alienpups/Rover.png", stats: { speed: 75, style: 95, loyalty: 64, rarity: "Epic" } },
+      { name: "Victor", image: "assets/images/alienpups/Victor.png", stats: { speed: 69, style: 67, loyalty: 26, rarity: "Uncommon" } },
+      { name: "Jinx", image: "assets/images/cyberpups/Jinx.png", stats: { speed: 86, style: 80, loyalty: 65, rarity: "Rare" } },
     ];
 
     function renderCards(containerId, cardArray) {
@@ -319,5 +325,5 @@
     });
   </script>
 </body>
-</html>
 
+</html>
