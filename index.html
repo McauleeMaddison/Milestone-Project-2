@@ -239,20 +239,24 @@
   </div>
 
   <div id="collection" class="page">
-    <h1 class="title">My Collection</h1>
-    <div class="card-container" id="collectionContainer">
-      <div class="pack" onclick="openPack('Cryptopups')">
-        <h3>Cryptopups Pack</h3>
-      </div>
-      <div class="pack" onclick="openPack('Cyberpups')">
-        <h3>Cyberpups Pack</h3>
-      </div>
-      <div class="pack" onclick="openPack('Alienpups')">
-        <h3>Alienpups Pack</h3>
-      </div>
+  <h1 class="title">My Collection</h1>
+  <p>Click a pack to reveal the cards inside!</p>
+  <div class="packs-container">
+    <div class="card-pack" data-pack="cryptopups">
+      <img src="assets/images/packs/cryptopack.png" alt="Cryptopups Pack">
+      <p>Cryptopups</p>
     </div>
-    <div class="card-container" id="openedCards"></div>
+    <div class="card-pack" data-pack="cyberpups">
+      <img src="assets/images/packs/cyberpack.png" alt="Cyberpups Pack">
+      <p>Cyberpups</p>
+    </div>
+    <div class="card-pack" data-pack="alienpups">
+      <img src="assets/images/packs/alienpack.png" alt="Alienpups Pack">
+      <p>Alienpups</p>
+    </div>
   </div>
+  <div class="card-container" id="revealedCards"></div>
+</div>
 
   <div id="store" class="page">
     <h1 class="title">Card Store</h1>
@@ -268,6 +272,10 @@
       </label>
       <span>Dark Mode</span>
     </div>
+  </div>
+  <div class="color-picker-container" style="margin-top: 2rem;">
+    <label for="borderColorPicker">Card Border Color:</label>
+    <input type="color" id="borderColorPicker" value="#ffcc00" />
   </div>
 
   <div id="profile" class="page">
