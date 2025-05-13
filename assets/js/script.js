@@ -4,10 +4,12 @@ function switchPage(pageId) {
     page.classList.remove('active');
   });
   const targetPage = document.getElementById(pageId);
-  if (targetPage) targetPage.classList.add('active');
+  if (targetPage) {
+    targetPage.classList.add('active');
+  }
 }
 
-// ========== CARD DATA ==========
+// ========== CARD DATA ========== //
 const cryptopups = [
   {
     name: "Darla",
@@ -53,6 +55,7 @@ const allCards = [...cryptopups, ...cyberpups, ...alienpups];
 function renderCards(containerId, cardArray) {
   const container = document.getElementById(containerId);
   if (!container) return;
+
   container.innerHTML = "";
   cardArray.forEach(card => {
     const cardDiv = document.createElement('div');
@@ -86,9 +89,13 @@ function signIn() {
   const username = usernameInput ? usernameInput.value.trim() : "";
   if (!username) return;
 
-  document.querySelector('.sign-in-box').style.display = 'none';
-  document.getElementById('userLevelBox').style.display = 'block';
-  document.getElementById('usernameDisplay').textContent = `${username}'s Profile`;
+  const signInBox = document.querySelector('.sign-in-box');
+  const userLevelBox = document.getElementById('userLevelBox');
+  const usernameDisplay = document.getElementById('usernameDisplay');
+
+  if (signInBox) signInBox.style.display = 'none';
+  if (userLevelBox) userLevelBox.style.display = 'block';
+  if (usernameDisplay) usernameDisplay.textContent = `${username}'s Profile`;
 }
 
 // ========== FILTER CARDS ========== //
@@ -105,10 +112,7 @@ function filterCards() {
   const sorted = [...allCards].sort((a, b) => {
     const valA = a.stats[sortBy];
     const valB = b.stats[sortBy];
-    if (typeof valA === "number") {
-      return valB - valA;
-    }
-    return valA.localeCompare(valB);
+    return typeof valA === "number" ? valB - valA : valA.localeCompare(valB);
   });
 
   renderCards('cardContainer', sorted);
@@ -118,17 +122,10 @@ function filterCards() {
 function openPack(packName) {
   let selectedCards = [];
   switch (packName) {
-    case "cryptopups":
-      selectedCards = cryptopups;
-      break;
-    case "cyberpups":
-      selectedCards = cyberpups;
-      break;
-    case "alienpups":
-      selectedCards = alienpups;
-      break;
-    default:
-      return;
+    case "cryptopups": selectedCards = cryptopups; break;
+    case "cyberpups": selectedCards = cyberpups; break;
+    case "alienpups": selectedCards = alienpups; break;
+    default: return;
   }
 
   const display = document.getElementById("packDisplay");
@@ -138,7 +135,7 @@ function openPack(packName) {
   selectedCards.forEach((card, index) => {
     setTimeout(() => {
       const div = document.createElement("div");
-      div.className = "card";
+      div.className = "collection-card";
       div.innerHTML = `
         <div class="card-inner flipped">
           <div class="card-front">
@@ -155,12 +152,17 @@ function openPack(packName) {
           </div>
         </div>
       `;
+      div.addEventListener('click', () => {
+        div.classList.toggle('flipped');
+      });
+
       display.appendChild(div);
 
-      const rect = div.getBoundingClientRect();
-      const sparkleX = rect.left + rect.width / 2 + Math.random() * 100 - 50;
-      const sparkleY = rect.top + rect.height / 2 + Math.random() * 60 - 30;
+      // Optional sparkle effect
       if (typeof createSparkle === 'function') {
+        const rect = div.getBoundingClientRect();
+        const sparkleX = rect.left + rect.width / 2 + (Math.random() * 100 - 50);
+        const sparkleY = rect.top + rect.height / 2 + (Math.random() * 60 - 30);
         createSparkle(sparkleX, sparkleY);
       }
     }, index * 200);
