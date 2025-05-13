@@ -1,11 +1,17 @@
 // ========== CARD DATA ========== //
 const cards = [
-  { name: "Gibbons", image: "assets/images/cyberpack/Gibbons.png",
-    stats: { speed: 7, style: 10, loyalty: 8 }, type: "Cyberpups" },
-  { name: "FloatyBlue", image: "assets/images/cryptopack/FloatyBlue.png",
-    stats: { speed: 9, style: 9, loyalty: 6 }, type: "Cryptopups" },
-  { name: "Lucy", image: "assets/images/alienpack/Lucy.png",
-    stats: { speed: 6, style: 8, loyalty: 10 }, type: "Alienpups" },
+  {
+    name: "Gibbons", image: "assets/images/cyberpack/Gibbons.png",
+    stats: { speed: 7, style: 10, loyalty: 8 }, type: "Cyberpups"
+  },
+  {
+    name: "FloatyBlue", image: "assets/images/cryptopack/Darla.png",
+    stats: { speed: 9, style: 9, loyalty: 6 }, type: "Cryptopups"
+  },
+  {
+    name: "Lucy", image: "assets/images/alienpack/Lucy.png",
+    stats: { speed: 6, style: 8, loyalty: 10 }, type: "Alienpups"
+  },
 ];
 
 function switchPage(id) {
@@ -31,13 +37,13 @@ function playGame() {
   const stat = ['speed', 'style', 'loyalty'][Math.floor(Math.random() * 3)];
   const result =
     player.stats[stat] > computer.stats[stat] ? 'You Win!' :
-    player.stats[stat] < computer.stats[stat] ? 'You Lose!' :
-    'Draw!';
+      player.stats[stat] < computer.stats[stat] ? 'You Lose!' :
+        'Draw!';
 
   document.getElementById('playerCard').innerHTML = `
     <img src="${player.image}" alt="${player.name}">
     <p>${player.name}<br>${stat}: ${player.stats[stat]}</p>`;
-  
+
   document.getElementById('computerCard').innerHTML = `
     <img src="${computer.image}" alt="${computer.name}">
     <p>${computer.name}<br>${stat}: ${computer.stats[stat]}</p>`;

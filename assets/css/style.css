@@ -81,7 +81,7 @@ nav a {
   height: 220px;
   background: #333;
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   padding: 1rem;
   transition: transform 0.6s;
   transform-style: preserve-3d;
@@ -92,11 +92,25 @@ nav a {
   border-radius: 8px;
 }
 
-.card.fan-1 { transform: rotate(-10deg) translateY(10px); }
-.card.fan-2 { transform: rotate(-5deg) translateY(5px); }
-.card.fan-3 { transform: rotate(0deg); }
-.card.fan-4 { transform: rotate(5deg) translateY(5px); }
-.card.fan-5 { transform: rotate(10deg) translateY(10px); }
+.card.fan-1 {
+  transform: rotate(-10deg) translateY(10px);
+}
+
+.card.fan-2 {
+  transform: rotate(-5deg) translateY(5px);
+}
+
+.card.fan-3 {
+  transform: rotate(0deg);
+}
+
+.card.fan-4 {
+  transform: rotate(5deg) translateY(5px);
+}
+
+.card.fan-5 {
+  transform: rotate(10deg) translateY(10px);
+}
 
 .game-container {
   text-align: center;
@@ -115,7 +129,8 @@ nav a {
   font-weight: bold;
 }
 
-.player-card, .computer-card {
+.player-card,
+.computer-card {
   width: 180px;
   height: 240px;
   background: #222;
@@ -124,7 +139,8 @@ nav a {
   box-shadow: 0 0 10px #000;
 }
 
-.player-card img, .computer-card img {
+.player-card img,
+.computer-card img {
   width: 100%;
   border-radius: 10px;
 }
