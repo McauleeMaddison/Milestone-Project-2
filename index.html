@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NFTPups</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
@@ -156,11 +157,11 @@
       border-radius: 50%;
     }
 
-    .toggle-switch input:checked + .slider {
+    .toggle-switch input:checked+.slider {
       background-color: #15a4e7;
     }
 
-    .toggle-switch input:checked + .slider:before {
+    .toggle-switch input:checked+.slider:before {
       transform: translateX(20px);
     }
 
@@ -189,11 +190,17 @@
       border-radius: 5px;
     }
 
-    .pack {
+    .pack-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card-pack {
       width: 200px;
       height: 280px;
       background: #222;
-      color: #fff;
       border: 2px solid #ffcc00;
       border-radius: 12px;
       display: flex;
@@ -204,16 +211,22 @@
       transition: transform 0.3s;
     }
 
-    .pack:hover {
+    .card-pack:hover {
       transform: scale(1.05);
       box-shadow: 0 0 20px #ffcc00;
     }
 
-    .pack h3 {
+    .card-pack img {
+      max-width: 90%;
+    }
+
+    .card-pack p {
       margin-top: 1rem;
+      font-weight: bold;
     }
   </style>
 </head>
+
 <body>
   <nav>
     <a href="#" onclick="switchPage('home'); return false;">Home</a>
@@ -239,24 +252,23 @@
   </div>
 
   <div id="collection" class="page">
-  <h1 class="title">My Collection</h1>
-  <p>Click a pack to reveal the cards inside!</p>
-  <div class="packs-container">
-    <div class="card-pack" data-pack="cryptopups">
-      <img src="assets/images/packs/cryptopack.png" alt="Cryptopups Pack">
-      <p>Cryptopups</p>
+    <h1 class="title">Card Collection</h1>
+    <div class="pack-row">
+      <div class="card-pack" onclick="openPack('Cryptopups')">
+        <img src="assets/images/packs/cryptopack.png" alt="Crypto Pack">
+        <p>Crypto Pack</p>
+      </div>
+      <div class="card-pack" onclick="openPack('Cyberpups')">
+        <img src="assets/images/packs/cyberpack.png" alt="Cyber Pack">
+        <p>Cyber Pack</p>
+      </div>
+      <div class="card-pack" onclick="openPack('Alienpups')">
+        <img src="assets/images/packs/alienpack.png" alt="Alien Pack">
+        <p>Alien Pack</p>
+      </div>
     </div>
-    <div class="card-pack" data-pack="cyberpups">
-      <img src="assets/images/packs/cyberpack.png" alt="Cyberpups Pack">
-      <p>Cyberpups</p>
-    </div>
-    <div class="card-pack" data-pack="alienpups">
-      <img src="assets/images/packs/alienpack.png" alt="Alienpups Pack">
-      <p>Alienpups</p>
-    </div>
+    <div id="openedCards" class="card-container"></div>
   </div>
-  <div class="card-container" id="revealedCards"></div>
-</div>
 
   <div id="store" class="page">
     <h1 class="title">Card Store</h1>
@@ -272,10 +284,10 @@
       </label>
       <span>Dark Mode</span>
     </div>
-  </div>
-  <div class="color-picker-container" style="margin-top: 2rem;">
-    <label for="borderColorPicker">Card Border Color:</label>
-    <input type="color" id="borderColorPicker" value="#ffcc00" />
+    <div class="color-picker-container" style="margin-top: 2rem;">
+      <label for="borderColorPicker">Card Border Color:</label>
+      <input type="color" id="borderColorPicker" value="#ffcc00" />
+    </div>
   </div>
 
   <div id="profile" class="page">
@@ -283,7 +295,9 @@
     <div class="sign-in-box">
       <h2>Welcome Back!</h2>
       <input type="text" placeholder="Username" />
-      <div class="level-bar"><div class="level-fill"></div></div>
+      <div class="level-bar">
+        <div class="level-fill"></div>
+      </div>
       <p>Level: <span id="level">5</span></p>
     </div>
   </div>
@@ -351,13 +365,16 @@
     }
 
     document.getElementById('darkModeToggle').addEventListener('change', (e) => {
-      document.body.style.background = e.target.checked
+      const isDark = e.target.checked;
+      document.body.style.background = isDark
         ? 'linear-gradient(to right, #000, #222)'
         : 'linear-gradient(to right, #232526, #414345)';
+      document.body.style.color = isDark ? '#eee' : '#fff';
     });
 
     // Initial render
     renderCards('cardContainer', cards);
   </script>
 </body>
+
 </html>

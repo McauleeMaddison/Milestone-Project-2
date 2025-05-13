@@ -1,25 +1,37 @@
 // ========== CARD DATA ========== //
 document.addEventListener('DOMContentLoaded', () => {
-  const cards = [
-    {
-      name: "Gibbons",
-      image: "assets/images/cyberpups/Gibbons.png",
-      stats: { speed: 7, style: 10, loyalty: 8, rarity: "Legendary" }
-    },
-    {
-      name: "FloatyBlue",
-      image: "assets/images/cryptopups/FloatyBlue.png",
-      stats: { speed: 9, style: 9, loyalty: 6, rarity: "Epic" }
-    },
-    {
-      name: "Lucy",
-      image: "assets/images/alienpups/Lucy.png",
-      stats: { speed: 6, style: 8, loyalty: 10, rarity: "Rare" }
-    }
+  const allCards = {
+    cryptopups: [
+      {
+        name: "FloatyBlue",
+        image: "assets/images/cryptopups/FloatyBlue.png",
+        stats: { speed: 9, style: 9, loyalty: 6, rarity: "Epic" }
+      }
+    ],
+    cyberpups: [
+      {
+        name: "Gibbons",
+        image: "assets/images/cyberpups/Gibbons.png",
+        stats: { speed: 7, style: 10, loyalty: 8, rarity: "Legendary" }
+      }
+    ],
+    alienpups: [
+      {
+        name: "Lucy",
+        image: "assets/images/alienpups/Lucy.png",
+        stats: { speed: 6, style: 8, loyalty: 10, rarity: "Rare" }
+      }
+    ]
+  };
+
+  const allFlatCards = [
+    ...allCards.cryptopups,
+    ...allCards.cyberpups,
+    ...allCards.alienpups
   ];
 
   // SPA Page Switcher
-  window.switchPage = function(pageId) {
+  window.switchPage = function (pageId) {
     document.querySelectorAll('.page').forEach(page => {
       page.classList.remove('active');
     });
@@ -30,8 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render Cards
   function renderCards(containerId, cardsToRender) {
     const container = document.getElementById(containerId);
+    if (!container) return;
+
     const borderColor = localStorage.getItem('cardBorderColor') || '#ffcc00';
     container.innerHTML = '';
+
     cardsToRender.forEach(card => {
       const cardDiv = document.createElement('div');
       cardDiv.classList.add('card');
@@ -59,20 +74,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Handle Pack Clicks
+  window.openPack = function (packName) {
+    // Hide other containers (optional if only one deck container exists)
+    ['cryptopups', 'cyberpups', 'alienpups'].forEach(id => {
+      const container = document.getElementById('deckContainer');
+      if (container) container.innerHTML = '';
+    });
+
+    const cards = allCards[packName] || [];
+    renderCards('deckContainer', cards);
+  };
+
   // Filter Cards
   window.filterCards = function () {
     const sortBy = document.getElementById('filter').value;
     if (sortBy === "all") {
-      renderCards('cardContainer', cards);
+      renderCards('cardContainer', allFlatCards);
       return;
     }
-    const sorted = [...cards].sort((a, b) => {
-      if (typeof a.stats[sortBy] === "number") {
-        return b.stats[sortBy] - a.stats[sortBy];
-      } else {
-        return a.stats[sortBy].localeCompare(b.stats[sortBy]);
-      }
+
+    const sorted = [...allFlatCards].sort((a, b) => {
+      const valA = a.stats[sortBy];
+      const valB = b.stats[sortBy];
+      return typeof valA === "number"
+        ? valB - valA
+        : valA.localeCompare(valB);
     });
+
     renderCards('cardContainer', sorted);
   };
 
@@ -109,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Initial Card Rendering
-  renderCards('cardContainer', cards);
-  renderCards('collectionContainer', cards.slice(0, 2)); // Example for collection page
+  // Initial Renders
+  renderCards('cardContainer', allFlatCards);              // Full collection view
+  renderCards('collectionContainer', allFlatCards.slice(0, 2)); // Sample in another section
 });
