@@ -57,20 +57,54 @@
   <!-- Store -->
   <div id="store" class="page">
     <h1 class="title">Card Store</h1>
-    <p>Buy new packs and special editions!</p>
+    <div class="store-cards">
+      <div class="store-card">
+        <div class="card-3d">
+          <div class="card-front">
+            <img src="assets/images/packs/cryptopack.png" alt="Crypto Pack">
+            <p>Crypto Pack - 100 Coins</p>
+          </div>
+          <div class="card-back">
+            <p>Includes 5 Cryptopups</p>
+          </div>
+        </div>
+      </div>
+      <div class="store-card">
+        <div class="card-3d">
+          <div class="card-front">
+            <img src="assets/images/packs/cyberpack.png" alt="Cyber Pack">
+            <p>Cyber Pack - 120 Coins</p>
+          </div>
+          <div class="card-back">
+            <p>Includes 5 Cyberpups</p>
+          </div>
+        </div>
+      </div>
+      <div class="store-card">
+        <div class="card-3d">
+          <div class="card-front">
+            <img src="assets/images/packs/alienpack.png" alt="Alien Pack">
+            <p>Alien Pack - 150 Coins</p>
+          </div>
+          <div class="card-back">
+            <p>Includes 5 Alienpups</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Profile -->
   <div id="profile" class="page">
-    <h1 class="title">User Profile</h1>
-    <div class="sign-in-box">
-      <input type="text" placeholder="Username" />
-      <div class="level-bar">
-        <div class="level-fill"></div>
-      </div>
-      <p>Level: <span id="level">5</span></p>
+    <h1 class="title">Login to NFTPups</h1>
+    <div class="login-box">
+      <input type="text" placeholder="Username" class="animated-input" />
+      <input type="password" placeholder="Password" class="animated-input" />
+      <button class="login-btn" onclick="fakeLogin()">Sign In</button>
+      <div class="login-status" id="loginStatus"></div>
     </div>
   </div>
+
 
   <script src="assets/js/script.js"></script>
 </body>

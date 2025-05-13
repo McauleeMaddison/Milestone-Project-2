@@ -50,3 +50,12 @@ function playGame() {
 
   document.getElementById('gameResult').textContent = result;
 }
+function fakeLogin() {
+  const status = document.getElementById('loginStatus');
+  status.textContent = "Signing in...";
+  status.style.color = "#00f2ff";
+  setTimeout(() => {
+    status.textContent = "Welcome back, Trainer!";
+    status.style.color = "#ffcc00";
+  }, 1000);
+}
