@@ -331,12 +331,14 @@
               </div>
               <div class="card-back">
                 <h4>${card.name}</h4>
-                <ul>
-                  <li>Speed: ${card.stats.speed}</li>
-                  <li>Style: ${card.stats.style}</li>
-                  <li>Loyalty: ${card.stats.loyalty}</li>
-                  <li>Rarity: ${card.stats.rarity}</li>
-                </ul>
+                <div class="card-back-content">
+                  <ul>
+                    <li>Speed: ${card.stats.speed}</li>
+                    <li>Style: ${card.stats.style}</li>
+                    <li>Loyalty: ${card.stats.loyalty}</li>
+                    <li>Rarity: ${card.stats.rarity}</li>
+                  </ul>
+                </div>
               </div>
             </div>
           `;
@@ -366,9 +368,11 @@
       // Dark mode toggle
       const darkModeToggle = document.getElementById('darkModeToggle');
       darkModeToggle.addEventListener('change', () => {
-        document.body.style.background = darkModeToggle.checked
+        const isDark = darkModeToggle.checked;
+        document.body.style.background = isDark
           ? 'linear-gradient(to right, #000, #222)'
           : 'linear-gradient(to right, #232526, #414345)';
+        document.body.style.color = isDark ? '#eee' : '#fff';
       });
 
       renderCards('cardContainer', cards);
