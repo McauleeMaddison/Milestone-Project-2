@@ -1,144 +1,46 @@
 // ========== CARD DATA ========== //
-document.addEventListener('DOMContentLoaded', () => {
-  const allCards = {
-    cryptopups: [
-      {
-        name: "FloatyBlue",
-        image: "assets/images/cryptopups/FloatyBlue.png",
-        stats: { speed: 9, style: 9, loyalty: 6, rarity: "Epic" }
-      }
-    ],
-    cyberpups: [
-      {
-        name: "Gibbons",
-        image: "assets/images/cyberpups/Gibbons.png",
-        stats: { speed: 7, style: 10, loyalty: 8, rarity: "Legendary" }
-      }
-    ],
-    alienpups: [
-      {
-        name: "Lucy",
-        image: "assets/images/alienpups/Lucy.png",
-        stats: { speed: 6, style: 8, loyalty: 10, rarity: "Rare" }
-      }
-    ]
-  };
+const cards = [
+  { name: "Gibbons", image: "assets/images/cyberpack/Gibbons.png",
+    stats: { speed: 7, style: 10, loyalty: 8 }, type: "Cyberpups" },
+  { name: "FloatyBlue", image: "assets/images/cryptopack/FloatyBlue.png",
+    stats: { speed: 9, style: 9, loyalty: 6 }, type: "Cryptopups" },
+  { name: "Lucy", image: "assets/images/alienpack/Lucy.png",
+    stats: { speed: 6, style: 8, loyalty: 10 }, type: "Alienpups" },
+];
 
-  const allFlatCards = [
-    ...allCards.cryptopups,
-    ...allCards.cyberpups,
-    ...allCards.alienpups
-  ];
+function switchPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
 
-  // SPA Page Switcher
-  window.switchPage = function (pageId) {
-    document.querySelectorAll('.page').forEach(page => {
-      page.classList.remove('active');
-    });
-    const target = document.getElementById(pageId);
-    if (target) target.classList.add('active');
-  };
+function openPack(type, containerId) {
+  const area = document.getElementById(containerId);
+  area.innerHTML = '';
+  const filtered = cards.filter(card => card.type === type);
+  filtered.forEach((card, i) => {
+    const div = document.createElement('div');
+    div.className = `card fan-${(i % 5) + 1}`;
+    div.innerHTML = `<img src="${card.image}" alt="${card.name}"><p>${card.name}</p>`;
+    area.appendChild(div);
+  });
+}
 
-  // Render Cards
-  function renderCards(containerId, cardsToRender) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+function playGame() {
+  const player = cards[Math.floor(Math.random() * cards.length)];
+  const computer = cards[Math.floor(Math.random() * cards.length)];
+  const stat = ['speed', 'style', 'loyalty'][Math.floor(Math.random() * 3)];
+  const result =
+    player.stats[stat] > computer.stats[stat] ? 'You Win!' :
+    player.stats[stat] < computer.stats[stat] ? 'You Lose!' :
+    'Draw!';
 
-    const borderColor = localStorage.getItem('cardBorderColor') || '#ffcc00';
-    container.innerHTML = '';
+  document.getElementById('playerCard').innerHTML = `
+    <img src="${player.image}" alt="${player.name}">
+    <p>${player.name}<br>${stat}: ${player.stats[stat]}</p>`;
+  
+  document.getElementById('computerCard').innerHTML = `
+    <img src="${computer.image}" alt="${computer.name}">
+    <p>${computer.name}<br>${stat}: ${computer.stats[stat]}</p>`;
 
-    cardsToRender.forEach(card => {
-      const cardDiv = document.createElement('div');
-      cardDiv.classList.add('card');
-      cardDiv.style.border = `2px solid ${borderColor}`;
-      cardDiv.innerHTML = `
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="${card.image}" alt="${card.name}" />
-          </div>
-          <div class="card-back">
-            <h4>${card.name}</h4>
-            <ul>
-              <li>Speed: ${card.stats.speed}</li>
-              <li>Style: ${card.stats.style}</li>
-              <li>Loyalty: ${card.stats.loyalty}</li>
-              <li>Rarity: ${card.stats.rarity}</li>
-            </ul>
-          </div>
-        </div>
-      `;
-      cardDiv.addEventListener('click', () => {
-        cardDiv.classList.toggle('flipped');
-      });
-      container.appendChild(cardDiv);
-    });
-  }
-
-  // Handle Pack Clicks
-  window.openPack = function (packName) {
-    // Hide other containers (optional if only one deck container exists)
-    ['cryptopups', 'cyberpups', 'alienpups'].forEach(id => {
-      const container = document.getElementById('deckContainer');
-      if (container) container.innerHTML = '';
-    });
-
-    const cards = allCards[packName] || [];
-    renderCards('deckContainer', cards);
-  };
-
-  // Filter Cards
-  window.filterCards = function () {
-    const sortBy = document.getElementById('filter').value;
-    if (sortBy === "all") {
-      renderCards('cardContainer', allFlatCards);
-      return;
-    }
-
-    const sorted = [...allFlatCards].sort((a, b) => {
-      const valA = a.stats[sortBy];
-      const valB = b.stats[sortBy];
-      return typeof valA === "number"
-        ? valB - valA
-        : valA.localeCompare(valB);
-    });
-
-    renderCards('cardContainer', sorted);
-  };
-
-  // Dark Mode Toggle
-  const darkModeToggle = document.getElementById('darkModeToggle');
-  if (darkModeToggle) {
-    const savedTheme = localStorage.getItem('darkMode');
-    if (savedTheme === 'true') {
-      darkModeToggle.checked = true;
-      document.body.style.background = 'linear-gradient(to right, #000, #222)';
-    }
-
-    darkModeToggle.addEventListener('change', () => {
-      const isDark = darkModeToggle.checked;
-      document.body.style.background = isDark
-        ? 'linear-gradient(to right, #000, #222)'
-        : 'linear-gradient(to right, #232526, #414345)';
-      localStorage.setItem('darkMode', isDark);
-    });
-  }
-
-  // Border Color Picker
-  const borderColorPicker = document.getElementById('borderColorPicker');
-  if (borderColorPicker) {
-    const savedColor = localStorage.getItem('cardBorderColor') || '#ffcc00';
-    borderColorPicker.value = savedColor;
-
-    borderColorPicker.addEventListener('input', (e) => {
-      const color = e.target.value;
-      document.querySelectorAll('.card').forEach(card => {
-        card.style.border = `2px solid ${color}`;
-      });
-      localStorage.setItem('cardBorderColor', color);
-    });
-  }
-
-  // Initial Renders
-  renderCards('cardContainer', allFlatCards);              // Full collection view
-  renderCards('collectionContainer', allFlatCards.slice(0, 2)); // Sample in another section
-});
+  document.getElementById('gameResult').textContent = result;
+}
