@@ -5,7 +5,7 @@ const cards = [
     stats: { speed: 7, style: 10, loyalty: 8 }, type: "Cyberpups"
   },
   {
-    name: "FloatyBlue", image: "assets/images/cryptopack/Darla.png",
+    name: "FloatyBlue", image: "assets/images/cryptopack/FloatyBlue.png",
     stats: { speed: 9, style: 9, loyalty: 6 }, type: "Cryptopups"
   },
   {
