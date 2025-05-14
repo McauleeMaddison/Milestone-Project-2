@@ -17,7 +17,7 @@ const cards = [
     stats: { speed: 15, style: 15, loyalty: 9 }, type: "Cyberpups"
   },
   {
-    name: "FloatyBlue", image: "assets/images/cryptopack/FloatyBlue.png",
+    name: "Jasper", image: "assets/images/cryptopack/Jasper.png",
     stats: { speed: 4, style: 10, loyalty: 20 }, type: "Cryptopups"
   },
   {
