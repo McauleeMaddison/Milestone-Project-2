@@ -5,12 +5,36 @@ const cards = [
     stats: { speed: 7, style: 10, loyalty: 8 }, type: "Cyberpups"
   },
   {
-    name: "FloatyBlue", image: "assets/images/cryptopack/FloatyBlue.png",
+    name: "Darla", image: "assets/images/cryptopack/Darla.png",
     stats: { speed: 9, style: 9, loyalty: 6 }, type: "Cryptopups"
   },
   {
     name: "Lucy", image: "assets/images/alienpack/Lucy.png",
     stats: { speed: 6, style: 8, loyalty: 10 }, type: "Alienpups"
+  },
+   {
+    name: "Ace", image: "assets/images/cyberpack/Ace.png",
+    stats: { speed: 15, style: 15, loyalty: 9 }, type: "Cyberpups"
+  },
+  {
+    name: "FloatyBlue", image: "assets/images/cryptopack/FloatyBlue.png",
+    stats: { speed: 4, style: 10, loyalty: 20 }, type: "Cryptopups"
+  },
+  {
+    name: "Victor", image: "assets/images/alienpack/Victor.png",
+    stats: { speed: 15, style: 12, loyalty: 7 }, type: "Alienpups"
+  },
+   {
+    name: "Jinx", image: "assets/images/cyberpack/Jinx.png",
+    stats: { speed: 20, style: 10, loyalty: 15 }, type: "Cyberpups"
+  },
+  {
+    name: "WoodyBlue", image: "assets/images/cryptopack/WoodyBlue.png",
+    stats: { speed: 8, style: 5, loyalty: 10 }, type: "Cryptopups"
+  },
+  {
+    name: "Tima", image: "assets/images/alienpack/Tima.png",
+    stats: { speed: 10, style: 20, loyalty: 15 }, type: "Alienpups"
   },
 ];
 
