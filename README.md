@@ -30,7 +30,6 @@ nftpups/
 │   ├── js/
 │   │   └── script.js            # Game logic, navigation, and interactivity
 │   └── images/
-│       ├── packs/               # Pack artwork (Crypto, Cyber, Alien)
 │       ├── cryptopack/          # Cryptopups card images
 │       ├── cyberpack/           # Cyberpups card images
 │       └── alienpack/           # Alienpups card images
@@ -48,6 +47,8 @@ Cards animate with a 3D fanning effect and flip to show stats.
 🛒 Store - Buy Card Packs
 Each pack displayed as a 3D rotatable card.
 Front shows pack name and cost, back shows contents.
+
+HADE HELP FROM AI TO MAKE THE README.md FILE LOOK MORE professional 
 Built with CSS 3D transformations for stylish hover effects.
 👤 Profile - Login Animation
 Username and password fields with animated focus and glow effects.
