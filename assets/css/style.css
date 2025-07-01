@@ -1,3 +1,4 @@
+/* === GLOBAL STYLES === */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -8,7 +9,8 @@ body {
 nav {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
   padding: 1rem;
   background: #111;
 }
@@ -21,7 +23,7 @@ nav a {
 
 .page {
   display: none;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .page.active {
@@ -31,21 +33,33 @@ nav a {
 .title {
   font-size: 2rem;
   color: #ffcc00;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* === CARD PACK STYLING === */
+.pack-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .card-pack {
-  width: 260px;
-  height: 355px;
-  margin: 1rem;
+  width: 220px;
   background: #222;
   border: 2px solid #ffcc00;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
+}
+
+.card-pack img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 1px solid #ffcc00;
 }
 
 .card-pack:hover {
@@ -53,38 +67,34 @@ nav a {
   box-shadow: 0 0 20px #ffcc00;
 }
 
-.card-pack img {
-  width: 100%;
-  border-radius: 10px;
+.card-pack p {
+  margin: 0.5rem;
+  font-weight: bold;
 }
 
-.pack-row {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
+/* === REVEAL AREA === */
 .reveal-areas {
   margin-top: 2rem;
 }
 
 .card-reveal-area {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
   perspective: 1000px;
-  flex-wrap: wrap;
 }
 
 .card {
-  width: 160px;
-  height: 220px;
+  width: 140px;
+  height: 200px;
   background: #333;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   padding: 1rem;
-  transition: transform 0.6s;
   transform-style: preserve-3d;
+  transition: transform 0.6s ease;
 }
 
 .card img {
@@ -92,86 +102,51 @@ nav a {
   border-radius: 8px;
 }
 
-.card.fan-1 {
-  transform: rotate(-10deg) translateY(10px);
-}
+.card.fan-1 { transform: rotate(-10deg) translateY(10px); }
+.card.fan-2 { transform: rotate(-5deg) translateY(5px); }
+.card.fan-3 { transform: rotate(0deg); }
+.card.fan-4 { transform: rotate(5deg) translateY(5px); }
+.card.fan-5 { transform: rotate(10deg) translateY(10px); }
 
-.card.fan-2 {
-  transform: rotate(-5deg) translateY(5px);
-}
-
-.card.fan-3 {
-  transform: rotate(0deg);
-}
-
-.card.fan-4 {
-  transform: rotate(5deg) translateY(5px);
-}
-
-.card.fan-5 {
-  transform: rotate(10deg) translateY(10px);
-}
-
+/* === GAME === */
 .game-container {
   text-align: center;
 }
 
 .game-battle {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  gap: 2rem;
   margin-top: 2rem;
 }
 
 .vs-text {
-  margin: 0 2rem;
   font-size: 2rem;
   font-weight: bold;
+  align-self: center;
 }
 
-.player-card,
-.computer-card {
-  width: 180px;
-  height: 240px;
+.player-card, .computer-card {
+  width: 160px;
+  height: 220px;
   background: #222;
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 0 10px #000;
 }
 
-.player-card img,
-.computer-card img {
+.player-card img, .computer-card img {
   width: 100%;
   border-radius: 10px;
 }
 
-.sign-in-box {
-  background: #222;
-  padding: 1rem;
-  border-radius: 10px;
-  width: 300px;
-}
-
-.level-bar {
-  height: 10px;
-  background: #555;
-  border-radius: 5px;
-  margin: 10px 0;
-  overflow: hidden;
-}
-
-.level-fill {
-  width: 50%;
-  height: 100%;
-  background: #ffcc00;
-}
-
-/* === STORE 3D CARDS === */
+/* === STORE 3D FLIP CARDS === */
 .store-cards {
   display: flex;
-  gap: 5rem;
+  flex-wrap: wrap;
   justify-content: center;
-  margin-top: 2rem;
+  gap: 2rem;
 }
 
 .store-card {
@@ -179,8 +154,8 @@ nav a {
 }
 
 .card-3d {
-  width: 200px;
-  height: 365px;
+  width: 180px;
+  height: 320px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.8s;
@@ -202,8 +177,8 @@ nav a {
   backface-visibility: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .card-3d .card-front img {
@@ -218,12 +193,12 @@ nav a {
   color: #ffcc00;
 }
 
-/* === PROFILE LOGIN ANIMATION === */
+/* === LOGIN === */
 .login-box {
-  width: 300px;
-  margin: auto;
-  margin-top: 3rem;
-  background: rgba(20, 20, 20, 0.8);
+  width: 90%;
+  max-width: 320px;
+  margin: 2rem auto;
+  background: rgba(20, 20, 20, 0.85);
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 0 20px #00f2ff;
@@ -270,14 +245,43 @@ nav a {
   text-align: center;
 }
 
+/* === ANIMATIONS === */
 @keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(30px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  .pack-row,
+  .store-cards,
+  .card-reveal-area,
+  .game-battle {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-pack,
+  .card,
+  .player-card,
+  .computer-card,
+  .card-3d {
+    width: 90%;
+    max-width: 260px;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
   }
 }
