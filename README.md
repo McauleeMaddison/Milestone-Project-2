@@ -94,3 +94,15 @@ Built with CSS 3D transformations for stylish hover effects.
 👤 Profile - Login Animation
 Username and password fields with animated focus and glow effects.
 Sign-in button triggers a simulated login status animation.
+
+---
+
+## 🌐 Live Deployment
+
+The live deployed version of this project can be found here:
+
+[View Live Project](https://mcauleemaddison.github.io/Milestone-Project-2/)
+
+## 📚 Repository
+
+[GitHub Repository](https://github.com/McauleeMaddison/Milestone-Project-2)
