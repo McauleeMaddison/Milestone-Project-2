@@ -1,112 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Collect, reveal and battle with NFTPups trading cards.">
+    <title>NFTPups | Trading card battle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="NFTPups home">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span>NFTPups</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-link is-active" type="button" data-page="home" aria-current="page">Battle</button>
+        <button class="nav-link" type="button" data-page="collection">Collection</button>
+        <button class="nav-link" type="button" data-page="store">Store</button>
+        <button class="nav-link" type="button" data-page="profile">Profile</button>
+      </nav>
+    </header>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NFTPups</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-</head>
-
-<body>
-  <nav>
-    <a href="#" onclick="switchPage('home'); return false;">Home</a>
-    <a href="#" onclick="switchPage('collection'); return false;">Collection</a>
-    <a href="#" onclick="switchPage('store'); return false;">Store</a>
-    <a href="#" onclick="switchPage('profile'); return false;">Profile</a>
-  </nav>
-
-  <!-- Home: Card Game -->
-  <div id="home" class="page active">
-    <h1 class="title">NFTPups Card Battle</h1>
-    <div class="game-container">
-      <button onclick="playGame()">Play Round</button>
-      <div class="game-battle">
-        <div class="player-card" id="playerCard"></div>
-        <div class="vs-text">VS</div>
-        <div class="computer-card" id="computerCard"></div>
-      </div>
-      <div id="gameResult"></div>
-    </div>
-  </div>
-
-  <!-- Collection -->
-  <div id="collection" class="page">
-    <h1 class="title">Open Your Packs</h1>
-    <div class="pack-row">
-      <div class="card-pack" onclick="openPack('Cryptopups', 'cryptoArea')">
-        <img src="assets/images/cryptopack/MoonPup.png" alt="CryptopupsPack">
-        <p>Cryptopups Pack</p>
-      </div>
-      <div class="card-pack" onclick="openPack('Cyberpups', 'cyberArea')">
-        <img src="assets/images/cyberpack/Nukie.png" alt="CyberpupsPack">
-        <p>Cyberpups Pack</p>
-      </div>
-      <div class="card-pack" onclick="openPack('Alienpups', 'alienArea')">
-        <img src="assets/images/alienpack/Alienpup.png" alt="AlienpupsPack">
-        <p>Alienpups Pack</p>
-      </div>
-    </div>
-    <div class="reveal-areas">
-      <div id="cryptoArea" class="card-reveal-area"></div>
-      <div id="cyberArea" class="card-reveal-area"></div>
-      <div id="alienArea" class="card-reveal-area"></div>
-    </div>
-  </div>
-
-  <!-- Store -->
-  <div id="store" class="page">
-    <h1 class="title">Card Store</h1>
-    <div class="store-cards">
-      <div class="store-card">
-        <div class="card-3d">
-          <div class="card-front">
-            <img src="assets/images/cryptopack/FloatyBlue.png" alt="CryptoPack">
-            <p>CryptoPack - 100 Coins</p>
-          </div>
-          <div class="card-back">
-            <p>Includes 5 Cryptopups</p>
-          </div>
+    <main id="main-content">
+      <section id="home" class="page active" aria-labelledby="battle-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Training grounds / 01</p>
+          <h1 id="battle-title" tabindex="-1">Play the <span>pup</span> odds.</h1>
+          <p class="lede">Draw two cards, compare a random stat and find out who takes the round.</p>
         </div>
-      </div>
-      <div class="store-card">
-        <div class="card-3d">
-          <div class="card-front">
-            <img src="assets/images/cyberpack/Ace.png" alt="CyberPack">
-            <p>CyberPack - 120 Coins</p>
+        <div class="battle-panel">
+          <div class="battle-toolbar">
+            <div>
+              <p class="section-kicker">Quick battle</p>
+              <h2>Trainer vs. bot</h2>
+            </div>
+            <button id="play-button" class="button button-primary" type="button">Play a round <span aria-hidden="true">→</span></button>
           </div>
-          <div class="card-back">
-            <p>Includes 5 Cyberpups</p>
+          <div class="game-battle" aria-live="polite">
+            <article id="player-card" class="battle-card battle-card-empty">
+              <p class="card-placeholder">Your card will appear here</p>
+            </article>
+            <div class="versus" aria-hidden="true">VS</div>
+            <article id="computer-card" class="battle-card battle-card-empty">
+              <p class="card-placeholder">The bot is waiting</p>
+            </article>
           </div>
+          <p id="game-result" class="game-result" role="status">Choose a round to draw your first pair of pups.</p>
         </div>
-      </div>
-      <div class="store-card">
-        <div class="card-3d">
-          <div class="card-front">
-            <img src="assets/images/alienpack/Lucy.png" alt="AlienPack">
-            <p>AlienPack - 150 Coins</p>
+      </section>
+
+      <section id="collection" class="page" aria-labelledby="collection-title" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Collection / 02</p>
+            <h1 id="collection-title" tabindex="-1">Open a pack.</h1>
           </div>
-          <div class="card-back">
-            <p>Includes 5 Alienpups</p>
-          </div>
+          <p class="lede">Every pack reveals a hand-picked crew. Choose a world to see its roster.</p>
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="pack-grid">
+          <button class="pack-card crypto-pack" type="button" data-pack="Cryptopups" data-target="crypto-area">
+            <img src="assets/images/cryptopack/MoonPup.png" alt="MoonPup from the Cryptopups pack">
+            <span class="pack-meta"><span>01 / Cryptopups</span><strong>Open pack <span aria-hidden="true">↗</span></strong></span>
+          </button>
+          <button class="pack-card cyber-pack" type="button" data-pack="Cyberpups" data-target="cyber-area">
+            <img src="assets/images/cyberpack/Nukie.png" alt="Nukie from the Cyberpups pack">
+            <span class="pack-meta"><span>02 / Cyberpups</span><strong>Open pack <span aria-hidden="true">↗</span></strong></span>
+          </button>
+          <button class="pack-card alien-pack" type="button" data-pack="Alienpups" data-target="alien-area">
+            <img src="assets/images/alienpack/Alienpup.png" alt="Alienpup from the Alienpups pack">
+            <span class="pack-meta"><span>03 / Alienpups</span><strong>Open pack <span aria-hidden="true">↗</span></strong></span>
+          </button>
+        </div>
+        <div class="reveal-panel" aria-live="polite">
+          <p id="collection-status" class="section-kicker">Select a pack to reveal its pups.</p>
+          <div id="crypto-area" class="card-reveal-area"></div>
+          <div id="cyber-area" class="card-reveal-area"></div>
+          <div id="alien-area" class="card-reveal-area"></div>
+        </div>
+      </section>
 
-  <!-- Profile -->
-  <div id="profile" class="page">
-    <h1 class="title">Login to NFTPups</h1>
-    <div class="login-box">
-      <input type="text" placeholder="Username" class="animated-input" />
-      <input type="password" placeholder="Password" class="animated-input" />
-      <button class="login-btn" onclick="fakeLogin()">Sign In</button>
-      <div class="login-status" id="loginStatus"></div>
-    </div>
-  </div>
+      <section id="store" class="page" aria-labelledby="store-title" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Supply drop / 03</p>
+            <h1 id="store-title" tabindex="-1">Pick your next pack.</h1>
+          </div>
+          <p class="lede">Preview three themed packs. Hover or focus a card to see what it contains.</p>
+        </div>
+        <div class="store-cards">
+          <article class="store-card">
+            <div class="card-3d">
+              <div class="card-front"><img src="assets/images/cryptopack/FloatyBlue.png" alt="FloatyBlue Cryptopups pack art"><p>Crypto pack</p><strong>100 coins</strong></div>
+              <div class="card-back"><span>Inside</span><p>Five Cryptopups, including one moon-ready mystery pup.</p></div>
+            </div>
+          </article>
+          <article class="store-card">
+            <div class="card-3d">
+              <div class="card-front"><img src="assets/images/cyberpack/Ace.png" alt="Ace Cyberpups pack art"><p>Cyber pack</p><strong>120 coins</strong></div>
+              <div class="card-back"><span>Inside</span><p>Five Cyberpups for quick, high-style match-ups.</p></div>
+            </div>
+          </article>
+          <article class="store-card">
+            <div class="card-3d">
+              <div class="card-front"><img src="assets/images/alienpack/Lucy.png" alt="Lucy Alienpups pack art"><p>Alien pack</p><strong>150 coins</strong></div>
+              <div class="card-back"><span>Inside</span><p>Five Alienpups with out-of-this-world loyalty stats.</p></div>
+            </div>
+          </article>
+        </div>
+      </section>
 
+      <section id="profile" class="page" aria-labelledby="profile-title" hidden>
+        <div class="profile-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">Trainer profile / 04</p>
+            <h1 id="profile-title" tabindex="-1">Ready to enter the <span>kennel?</span></h1>
+            <p class="lede">Use a trainer name of 3–20 letters, numbers, spaces, underscores or hyphens. Passwords must contain at least six characters.</p>
+          </div>
+          <form id="login-form" class="login-box" novalidate>
+            <label for="username">Trainer name</label>
+            <input id="username" class="animated-input" name="username" type="text" autocomplete="username" minlength="3" maxlength="20" aria-describedby="username-hint">
+            <small id="username-hint">3–20 characters</small>
+            <label for="password">Access code</label>
+            <input id="password" class="animated-input" name="password" type="password" autocomplete="current-password" minlength="6" aria-describedby="password-hint">
+            <small id="password-hint">At least 6 characters</small>
+            <button class="button button-primary login-btn" type="submit">Enter NFTPups <span aria-hidden="true">→</span></button>
+            <p id="login-status" class="login-status" role="status" aria-live="polite">Enter your details to continue.</p>
+          </form>
+        </div>
+      </section>
+    </main>
 
-  <script src="assets/js/script.js"></script>
-</body>
-
+    <footer class="site-footer"><span>© 2026 NFTPups</span><span>Collect. Battle. Repeat.</span></footer>
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
