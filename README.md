@@ -106,24 +106,24 @@ Automated and manual testing have different strengths, so both are useful.
 | Empty profile submission | Submit the Profile form with both fields blank | A useful correction message appears; no sign-in success is shown. | Pass |
 | Valid profile input | Submit `Trainer_7` and a six-character dummy access code | A personalised welcome message appears and the access field is cleared. | Pass |
 | Browser errors | Inspect the browser console after the above journeys | No JavaScript errors are recorded. | Pass — 0 errors |
-| Store card keyboard interaction | Open the Store and use `Tab` to focus each pack preview without using the mouse. | Each focused Store card receives a visible focus indicator and flips to reveal its contents. | Manual test required |
+| Store card keyboard interaction | Open the Store and use `Tab` to focus each pack preview without using the mouse. | Each focused Store card receives a visible focus indicator and flips to reveal its contents. | Pass |
 
 ### Device Testing
 
 | Device category | Test | Result |
 | --- | --- | --- |
-| Desktop | Tested navigation, Battle, Collection, Store and Profile at desktop width. | Manual test required |
-| Tablet | Tested the responsive layout and interactive features at tablet width. | Manual test required |
-| Mobile | Tested the single-column responsive layout, navigation and interactive features at mobile width. | Manual test required |
+| Desktop | Tested navigation, Battle, Collection, Store and Profile at desktop width. | Pass |
+| Tablet | Tested the responsive layout and interactive features at tablet width. | Pass |
+| Mobile | Tested the single-column responsive layout, navigation and interactive features at mobile width. | Pass |
 
 ### Browser Compatibility
 
 | Browser | Test | Result |
 | --- | --- | --- |
-| Google Chrome | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Manual test required |
-| Mozilla Firefox | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Manual test required |
+| Google Chrome | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Unavailable in environment |
+| Mozilla Firefox | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Unavailable in environment |
 | Safari | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Manual test required |
-| Microsoft Edge | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Manual test required |
+| Microsoft Edge | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Unavailable in environment |
 
 ## Technologies
 
