@@ -521,9 +521,8 @@ h2 {
 }
 
 .pack-button:hover .card-3d,
-.pack-button:focus-within .card-3d,
-.store-card.is-open .pack-button .card-3d {
-  transform: rotateY(180deg);
+.pack-button:focus-within .card-3d {
+  transform: translateY(-0.2rem) rotate(-1deg);
 }
 
 .card-front,
@@ -540,6 +539,12 @@ h2 {
   color: #fff;
   background: var(--ink);
   backface-visibility: hidden;
+}
+
+.card-back {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .card-text {

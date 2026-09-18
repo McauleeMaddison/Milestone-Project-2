@@ -11,7 +11,7 @@ NFTPups is a responsive single-page trading-card experience. Players can draw a 
 | As a player, I want to play a mini card game against the computer so I can test my luck. | **Play a round** selects valid player and bot cards, compares a random stat and announces win, loss or draw. | ![A completed NFTPups battle round with two cards and the outcome message](assets/images/screenshots/battle-user-story.jpg) |
 | As a collector, I want to open card packs and see the cards revealed so I can enjoy the collectible experience. | Selecting a Crypto, Cyber or Alien pack clears the previous reveal and displays the valid cards from that collection. | ![The Cryptopups pack opened with three revealed trading cards](assets/images/screenshots/collection-user-story.jpg) |
 | As a trainer, I want clear feedback when I sign in so I know how to correct my details. | The form explains empty, malformed and too-short input rather than pretending that sign-in succeeded. | ![Profile form showing its empty-input validation message](assets/images/screenshots/profile-validation-user-story.jpg) |
-| As a collector, I want to preview available packs before choosing one so I can understand what each pack contains. | The Store displays Crypto, Cyber and Alien pack previews. Clicking a pack flips it open and reveals three separate pups beneath the opened pack, and clicking it again closes the pack cleanly. Keyboard activation works via the focused button and Enter/Space controls. | ![NFTPups Store page showing an interactive pack preview flipped to reveal its contents](assets/images/screenshots/store-user-story.jpg) |
+| As a collector, I want to preview available packs before choosing one so I can understand what each pack contains. | The Store displays Crypto, Cyber and Alien pack previews. Clicking a pack opens it directly to reveal three separate pups beneath it, and clicking it again closes the opened pack cleanly. Keyboard activation works via the focused button and Enter/Space controls. | ![NFTPups Store page showing an interactive pack preview flipped to reveal its contents](assets/images/screenshots/store-user-story.jpg) |
 
 ## Features
 
@@ -106,7 +106,7 @@ Automated and manual testing have different strengths, so both are useful.
 | Empty profile submission | Submit the Profile form with both fields blank | A useful correction message appears; no sign-in success is shown. | Pass |
 | Valid profile input | Submit `Trainer_7` and a six-character dummy access code | A personalised welcome message appears and the access field is cleared. | Pass |
 | Browser errors | Inspect the browser console after the above journeys | No JavaScript errors are recorded. | Pass — 0 errors |
-| Store card keyboard interaction | Open the Store and use `Tab` to focus each pack preview without using the mouse. | Each native Store button receives a visible focus state, pressing Enter or Space toggles the pack open and closed, and the three matching card previews appear beneath it when opened. | Pass |
+| Store card keyboard interaction | Open the Store and use `Tab` to focus each pack preview without using the mouse. | Each native Store button receives a visible focus state, pressing Enter or Space toggles the pack open and closed, and the three matching card previews appear beneath it without a blank flip panel. | Pass |
 
 ### Device Testing
 

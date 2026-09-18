@@ -193,6 +193,7 @@
             revealArea.innerHTML = '<div class="pack-reveal-item"><strong>Empty</strong><span>No pups are available in this pack right now.</span></div>';
             storeCard.classList.add("is-open");
             packButton.setAttribute("aria-expanded", "true");
+            packButton.setAttribute("aria-label", "Close the " + packType + " pack");
             return;
         }
         fragment = document.createDocumentFragment();
@@ -210,17 +211,20 @@
         revealArea.appendChild(fragment);
         storeCard.classList.add("is-open");
         packButton.setAttribute("aria-expanded", "true");
+        packButton.setAttribute("aria-label", "Close the " + packType + " pack");
     }
 
     function closeStorePack(storeCard) {
         var packButton = storeCard.querySelector(".pack-button"),
-            revealArea = storeCard.querySelector(".pack-reveal");
+            revealArea = storeCard.querySelector(".pack-reveal"),
+            packType = storeCard.dataset.pack || "";
         if (!packButton || !revealArea) {
             return;
         }
         revealArea.innerHTML = "";
         storeCard.classList.remove("is-open");
         packButton.setAttribute("aria-expanded", "false");
+        packButton.setAttribute("aria-label", "Open the " + packType + " pack to reveal its pups");
     }
 
     function toggleStorePack(storeCard) {
