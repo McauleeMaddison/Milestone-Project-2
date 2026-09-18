@@ -122,7 +122,7 @@ Automated and manual testing have different strengths, so both are useful.
 | --- | --- | --- |
 | Google Chrome | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Unavailable in environment |
 | Mozilla Firefox | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Unavailable in environment |
-| Safari | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Manual test required |
+| Safari | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Unavailable in environment |
 | Microsoft Edge | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Unavailable in environment |
 
 ## Technologies
