@@ -176,6 +176,41 @@
         passwordInput.value = "";
     }
 
+    function openStorePack(storeCard) {
+        var packType = storeCard.dataset.pack || "",
+            revealArea = storeCard.querySelector(".card-back"),
+            packCards,
+            list;
+        if (!revealArea) {
+            return;
+        }
+        revealArea.innerHTML = "";
+        packCards = cards.filter(function (card) {
+            return isValidCard(card) && card.type === packType;
+        }).slice(0, 3);
+        if (packCards.length === 0) {
+            revealArea.innerHTML = '<span>Inside</span><p>No pups are available in this pack right now.</p>';
+            storeCard.classList.add("is-open");
+            return;
+        }
+        list = document.createElement("div");
+        list.className = "pack-reveal-list";
+        packCards.forEach(function (card) {
+            var item = document.createElement("div"),
+                image = document.createElement("img"),
+                name = document.createElement("strong");
+            image.src = card.image;
+            image.alt = card.name + " revealed from the " + packType + " pack";
+            name.textContent = card.name;
+            item.className = "pack-reveal-item";
+            item.append(image, name);
+            list.appendChild(item);
+        });
+        revealArea.innerHTML = '<span>Opened</span>';
+        revealArea.appendChild(list);
+        storeCard.classList.add("is-open");
+    }
+
     function initialise() {
         var playButton = getElement("play-button"),
             loginForm = getElement("login-form");
@@ -187,6 +222,11 @@
         document.querySelectorAll(".pack-card").forEach(function (button) {
             button.addEventListener("click", function () {
                 openPack(button.dataset.pack || "", button.dataset.target || "");
+            });
+        });
+        document.querySelectorAll(".store-card").forEach(function (card) {
+            card.addEventListener("click", function () {
+                openStorePack(card);
             });
         });
         if (playButton) {
