@@ -499,6 +499,18 @@ h2 {
   outline-offset: 4px;
 }
 
+.store-card.is-open .pack-reveal {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.store-card:not(.is-open) .pack-reveal {
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  pointer-events: none;
+}
+
 .card-3d {
   position: relative;
   display: block;
