@@ -178,23 +178,24 @@
 
     function openStorePack(storeCard) {
         var packType = storeCard.dataset.pack || "",
-            revealArea = storeCard.querySelector(".card-back"),
+            packButton = storeCard.querySelector(".pack-button"),
+            revealArea = storeCard.querySelector(".pack-reveal"),
             packCards,
-            list;
-        if (!revealArea) {
+            fragment;
+        if (!packButton || !revealArea) {
             return;
         }
-        revealArea.innerHTML = "";
         packCards = cards.filter(function (card) {
             return isValidCard(card) && card.type === packType;
         }).slice(0, 3);
+        revealArea.innerHTML = "";
         if (packCards.length === 0) {
-            revealArea.innerHTML = '<span>Inside</span><p>No pups are available in this pack right now.</p>';
+            revealArea.innerHTML = '<div class="pack-reveal-item"><strong>Empty</strong><span>No pups are available in this pack right now.</span></div>';
             storeCard.classList.add("is-open");
+            packButton.classList.add("is-open");
             return;
         }
-        list = document.createElement("div");
-        list.className = "pack-reveal-list";
+        fragment = document.createDocumentFragment();
         packCards.forEach(function (card) {
             var item = document.createElement("div"),
                 image = document.createElement("img"),
@@ -204,11 +205,11 @@
             name.textContent = card.name;
             item.className = "pack-reveal-item";
             item.append(image, name);
-            list.appendChild(item);
+            fragment.appendChild(item);
         });
-        revealArea.innerHTML = '<span>Opened</span>';
-        revealArea.appendChild(list);
+        revealArea.appendChild(fragment);
         storeCard.classList.add("is-open");
+        packButton.classList.add("is-open");
     }
 
     function initialise() {
@@ -225,7 +226,11 @@
             });
         });
         document.querySelectorAll(".store-card").forEach(function (card) {
-            card.addEventListener("click", function () {
+            var button = card.querySelector(".pack-button");
+            if (!button) {
+                return;
+            }
+            button.addEventListener("click", function () {
                 openStorePack(card);
             });
         });

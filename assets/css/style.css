@@ -474,17 +474,27 @@ h2 {
 }
 
 .store-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
   min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.pack-button {
+  width: 100%;
   padding: 0;
   border: 0;
   background: transparent;
   text-align: left;
   cursor: pointer;
   perspective: 1000px;
-  aspect-ratio: 2 / 3;
 }
 
-.store-card:focus-visible {
+.pack-button:focus-visible {
   outline: 3px solid var(--purple);
   outline-offset: 4px;
 }
@@ -493,14 +503,14 @@ h2 {
   position: relative;
   display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 2 / 3;
   transform-style: preserve-3d;
   transition: transform 600ms ease;
 }
 
-.store-card:hover .card-3d,
-.store-card:focus-within .card-3d,
-.store-card.is-open .card-3d {
+.pack-button:hover .card-3d,
+.pack-button:focus-within .card-3d,
+.store-card.is-open .pack-button .card-3d {
   transform: rotateY(180deg);
 }
 
@@ -527,22 +537,32 @@ h2 {
   margin-top: auto;
 }
 
-.pack-reveal-list {
+.pack-reveal {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.5rem;
+  gap: 0.6rem;
   width: 100%;
-  margin-top: 0.75rem;
+  min-height: 0;
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  transition: opacity 250ms ease, transform 250ms ease;
+  pointer-events: none;
+}
+
+.store-card.is-open .pack-reveal {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .pack-reveal-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem;
-  border-radius: 0.5rem;
-  background: rgba(255, 255, 255, 0.12);
+  gap: 0.45rem;
+  padding: 0.4rem;
+  border: 1px solid var(--ink);
+  border-radius: 0.65rem;
+  background: rgba(23, 26, 45, 0.08);
 }
 
 .pack-reveal-item img {
@@ -550,12 +570,12 @@ h2 {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: 0.4rem;
+  border-radius: 0.3rem;
 }
 
 .pack-reveal-item strong {
   font-size: 0.56rem;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 

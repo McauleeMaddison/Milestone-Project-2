@@ -92,24 +92,33 @@
           <p class="lede">Preview three themed packs. Hover or focus a card to see what it contains.</p>
         </div>
         <div class="store-cards">
-          <button class="store-card" type="button" data-pack="Cryptopups" aria-label="Crypto pack preview. Click to reveal the pack contents.">
-            <span class="card-3d">
-              <span class="card-front"><img src="assets/images/cryptopack/FloatyBlue.png" alt="FloatyBlue Cryptopups pack art"><span class="card-text"><span>Crypto pack</span><strong>100 coins</strong></span></span>
-              <span class="card-back"><span>Inside</span><span>Five Cryptopups, including one moon-ready mystery pup.</span></span>
-            </span>
-          </button>
-          <button class="store-card" type="button" data-pack="Cyberpups" aria-label="Cyber pack preview. Click to reveal the pack contents.">
-            <span class="card-3d">
-              <span class="card-front"><img src="assets/images/cyberpack/Ace.png" alt="Ace Cyberpups pack art"><span class="card-text"><span>Cyber pack</span><strong>120 coins</strong></span></span>
-              <span class="card-back"><span>Inside</span><span>Five Cyberpups for quick, high-style match-ups.</span></span>
-            </span>
-          </button>
-          <button class="store-card" type="button" data-pack="Alienpups" aria-label="Alien pack preview. Click to reveal the pack contents.">
-            <span class="card-3d">
-              <span class="card-front"><img src="assets/images/alienpack/Lucy.png" alt="Lucy Alienpups pack art"><span class="card-text"><span>Alien pack</span><strong>150 coins</strong></span></span>
-              <span class="card-back"><span>Inside</span><span>Five Alienpups with out-of-this-world loyalty stats.</span></span>
-            </span>
-          </button>
+          <div class="store-card" data-pack="Cryptopups">
+            <button class="pack-button" type="button" aria-label="Open the Crypto pack to reveal its pups">
+              <span class="card-3d">
+                <span class="card-front"><img src="assets/images/cryptopack/FloatyBlue.png" alt="FloatyBlue Cryptopups pack art"><span class="card-text"><span>Crypto pack</span><strong>100 coins</strong></span></span>
+                <span class="card-back"><span>Inside</span><span>Five Cryptopups, including one moon-ready mystery pup.</span></span>
+              </span>
+            </button>
+            <div class="pack-reveal" aria-live="polite"></div>
+          </div>
+          <div class="store-card" data-pack="Cyberpups">
+            <button class="pack-button" type="button" aria-label="Open the Cyber pack to reveal its pups">
+              <span class="card-3d">
+                <span class="card-front"><img src="assets/images/cyberpack/Ace.png" alt="Ace Cyberpups pack art"><span class="card-text"><span>Cyber pack</span><strong>120 coins</strong></span></span>
+                <span class="card-back"><span>Inside</span><span>Five Cyberpups for quick, high-style match-ups.</span></span>
+              </span>
+            </button>
+            <div class="pack-reveal" aria-live="polite"></div>
+          </div>
+          <div class="store-card" data-pack="Alienpups">
+            <button class="pack-button" type="button" aria-label="Open the Alien pack to reveal its pups">
+              <span class="card-3d">
+                <span class="card-front"><img src="assets/images/alienpack/Lucy.png" alt="Lucy Alienpups pack art"><span class="card-text"><span>Alien pack</span><strong>150 coins</strong></span></span>
+                <span class="card-back"><span>Inside</span><span>Five Alienpups with out-of-this-world loyalty stats.</span></span>
+              </span>
+            </button>
+            <div class="pack-reveal" aria-live="polite"></div>
+          </div>
         </div>
       </section>
 
