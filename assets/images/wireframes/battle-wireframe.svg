@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">Battle page wireframe</title>
+  <desc id="desc">Neutral wireframe showing navigation, battle introduction, controls, and two card areas.</desc>
+  <rect width="900" height="600" fill="#f7f7f7" stroke="#333" stroke-width="4"/>
+  <rect x="28" y="24" width="844" height="58" fill="none" stroke="#555" stroke-width="2"/>
+  <text x="50" y="60" font-family="sans-serif" font-size="24" fill="#222">NFTPups</text>
+  <text x="430" y="60" font-family="sans-serif" font-size="18" fill="#555">Battle   Collection   Store   Profile</text>
+  <text x="55" y="145" font-family="sans-serif" font-size="16" fill="#666">BATTLE / 01</text>
+  <text x="55" y="190" font-family="sans-serif" font-size="38" font-weight="bold" fill="#222">Draw your matchup.</text>
+  <rect x="55" y="220" width="185" height="48" fill="#ddd" stroke="#333" stroke-width="2"/>
+  <text x="91" y="251" font-family="sans-serif" font-size="18" fill="#222">Play a round</text>
+  <rect x="55" y="300" width="350" height="220" fill="none" stroke="#555" stroke-width="3"/>
+  <rect x="495" y="300" width="350" height="220" fill="none" stroke="#555" stroke-width="3"/>
+  <text x="190" y="340" font-family="sans-serif" font-size="22" fill="#555">PLAYER CARD</text>
+  <text x="606" y="340" font-family="sans-serif" font-size="22" fill="#555">BOT CARD</text>
+  <line x1="95" y1="390" x2="365" y2="390" stroke="#888" stroke-width="2"/>
+  <line x1="535" y1="390" x2="805" y2="390" stroke="#888" stroke-width="2"/>
+</svg>

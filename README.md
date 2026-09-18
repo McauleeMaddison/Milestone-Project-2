@@ -11,6 +11,7 @@ NFTPups is a responsive single-page trading-card experience. Players can draw a 
 | As a player, I want to play a mini card game against the computer so I can test my luck. | **Play a round** selects valid player and bot cards, compares a random stat and announces win, loss or draw. | ![A completed NFTPups battle round with two cards and the outcome message](assets/images/screenshots/battle-user-story.jpg) |
 | As a collector, I want to open card packs and see the cards revealed so I can enjoy the collectible experience. | Selecting a Crypto, Cyber or Alien pack clears the previous reveal and displays the valid cards from that collection. | ![The Cryptopups pack opened with three revealed trading cards](assets/images/screenshots/collection-user-story.jpg) |
 | As a trainer, I want clear feedback when I sign in so I know how to correct my details. | The form explains empty, malformed and too-short input rather than pretending that sign-in succeeded. | ![Profile form showing its empty-input validation message](assets/images/screenshots/profile-validation-user-story.jpg) |
+| As a collector, I want to preview available packs before choosing one so I can understand what each pack contains. | The Store displays Crypto, Cyber and Alien pack previews. Hovering over or keyboard-focusing a pack flips the card to reveal information about its contents. | ![NFTPups Store page showing an interactive pack preview flipped to reveal its contents](assets/images/screenshots/store-user-story.jpg) |
 
 ## Features
 
@@ -42,7 +43,51 @@ node --check assets/js/script.js
 npx --yes jslint assets/js/script.js
 ```
 
-At the time of this update, all four commands pass; JSLint reports `assets/js/script.js is OK.`
+At the time of this update, all four validation commands pass.
+
+### JSLint validation evidence
+
+JSLint was run against the project's JavaScript file from the project root.
+
+![Terminal showing the successful JSLint validation of assets/js/script.js](assets/images/screenshots/jslint-validation.png)
+
+## Design
+
+NFTPups uses a high-contrast trading-card visual style designed to make the interactive elements easy to identify while retaining the feel of a digital collectible-card game. The interface combines a light background with strong purple, lime, coral and dark accents so that buttons, cards, status messages and navigation states remain visually distinct.
+
+The project uses Space Grotesk for the main interface and headings, with DM Mono used for smaller labels and card-style metadata. The layout is organised as a responsive single-page application with four main sections: Battle, Collection, Store and Profile.
+
+On larger displays, content can use multi-column card layouts, while tablet and mobile breakpoints reduce the number of columns and stack content vertically where necessary.
+
+Navigation is kept consistent across all four sections so users can move between features without leaving the page. Interactive elements use clear focus states, responsive sizing and reduced-motion support to improve usability across different screen sizes and input methods.
+
+### Wireframes / Mockups
+
+The following wireframes document the intended structure of the four main sections of the finished application.
+
+#### Battle
+
+![NFTPups Battle page wireframe](assets/images/wireframes/battle-wireframe.svg)
+
+The Battle wireframe shows the introductory content, battle controls and player-versus-computer card area.
+
+#### Collection
+
+![NFTPups Collection page wireframe](assets/images/wireframes/collection-wireframe.svg)
+
+The Collection wireframe shows the themed pack selector and card reveal area.
+
+#### Store
+
+![NFTPups Store page wireframe](assets/images/wireframes/store-wireframe.svg)
+
+The Store wireframe shows the three interactive pack-preview cards.
+
+#### Profile
+
+![NFTPups Profile page wireframe](assets/images/wireframes/profile-wireframe.svg)
+
+The Profile wireframe shows the trainer introduction and sign-in form.
 
 ## Testing approach
 
@@ -61,6 +106,24 @@ Automated and manual testing have different strengths, so both are useful.
 | Empty profile submission | Submit the Profile form with both fields blank | A useful correction message appears; no sign-in success is shown. | Pass |
 | Valid profile input | Submit `Trainer_7` and a six-character dummy access code | A personalised welcome message appears and the access field is cleared. | Pass |
 | Browser errors | Inspect the browser console after the above journeys | No JavaScript errors are recorded. | Pass — 0 errors |
+| Store card keyboard interaction | Open the Store and use `Tab` to focus each pack preview without using the mouse. | Each focused Store card receives a visible focus indicator and flips to reveal its contents. | Manual test required |
+
+### Device Testing
+
+| Device category | Test | Result |
+| --- | --- | --- |
+| Desktop | Tested navigation, Battle, Collection, Store and Profile at desktop width. | Manual test required |
+| Tablet | Tested the responsive layout and interactive features at tablet width. | Manual test required |
+| Mobile | Tested the single-column responsive layout, navigation and interactive features at mobile width. | Manual test required |
+
+### Browser Compatibility
+
+| Browser | Test | Result |
+| --- | --- | --- |
+| Google Chrome | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Manual test required |
+| Mozilla Firefox | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Manual test required |
+| Safari | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Manual test required |
+| Microsoft Edge | Navigation, Battle, Collection, Store, Profile and responsive layout tested. | Manual test required |
 
 ## Technologies
 
@@ -68,6 +131,12 @@ Automated and manual testing have different strengths, so both are useful.
 - CSS3 (Grid, Flexbox, custom properties, animation and media queries)
 - Vanilla JavaScript
 - Git and GitHub Pages
+
+## Version control
+
+Git and GitHub were used throughout development to track changes to the project. Commits provide a history of the implementation, fixes and documentation improvements made during development.
+
+![GitHub commit history for the NFTPups project](assets/images/screenshots/commit-history.png)
 
 ## Project structure
 
@@ -82,5 +151,6 @@ Automated and manual testing have different strengths, so both are useful.
         ├── alienpack/
         ├── cryptopack/
         ├── cyberpack/
-        └── screenshots/
+        ├── screenshots/
+        └── wireframes/
 ```

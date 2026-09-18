@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">Store page wireframe</title>
+  <desc id="desc">Neutral wireframe showing three interactive pack preview cards.</desc>
+  <rect width="900" height="600" fill="#f7f7f7" stroke="#333" stroke-width="4"/>
+  <rect x="28" y="24" width="844" height="58" fill="none" stroke="#555" stroke-width="2"/>
+  <text x="50" y="60" font-family="sans-serif" font-size="24" fill="#222">NFTPups</text>
+  <text x="430" y="60" font-family="sans-serif" font-size="18" fill="#555">Battle   Collection   Store   Profile</text>
+  <text x="55" y="145" font-family="sans-serif" font-size="16" fill="#666">SUPPLY DROP / 03</text>
+  <text x="55" y="190" font-family="sans-serif" font-size="38" font-weight="bold" fill="#222">Pick your next pack.</text>
+  <rect x="55" y="270" width="235" height="270" fill="none" stroke="#555" stroke-width="3"/>
+  <rect x="332" y="270" width="235" height="270" fill="none" stroke="#555" stroke-width="3"/>
+  <rect x="609" y="270" width="235" height="270" fill="none" stroke="#555" stroke-width="3"/>
+  <text x="135" y="350" font-family="sans-serif" font-size="22" fill="#555">CRYPTO</text>
+  <text x="415" y="350" font-family="sans-serif" font-size="22" fill="#555">CYBER</text>
+  <text x="690" y="350" font-family="sans-serif" font-size="22" fill="#555">ALIEN</text>
+  <line x1="92" y1="405" x2="253" y2="405" stroke="#888" stroke-width="2"/>
+  <line x1="369" y1="405" x2="530" y2="405" stroke="#888" stroke-width="2"/>
+  <line x1="646" y1="405" x2="807" y2="405" stroke="#888" stroke-width="2"/>
+  <text x="112" y="475" font-family="sans-serif" font-size="15" fill="#666">FOCUS TO REVEAL</text>
+  <text x="389" y="475" font-family="sans-serif" font-size="15" fill="#666">FOCUS TO REVEAL</text>
+  <text x="666" y="475" font-family="sans-serif" font-size="15" fill="#666">FOCUS TO REVEAL</text>
+</svg>
